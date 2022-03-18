@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SMART_WALK:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SMART_WALK</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SMART_WALK-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SMART_WALK:war exploded" />
+    </root>
+  </artifact>
+</component>

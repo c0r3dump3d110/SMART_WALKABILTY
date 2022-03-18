@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>AnnonceController</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.AnnonceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SiteController</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.SiteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthentificationController</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.AuthentificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TokenVerifConntroller</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.TokenVerifConntroller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationController</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.RegistrationController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AnnonceController</servlet-name>
+        <url-pattern>/annonces</url-pattern>
+        <url-pattern>/annonces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SiteController</servlet-name>
+        <url-pattern>/sites</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthentificationController</servlet-name>
+        <url-pattern>/auth</url-pattern>
+        <url-pattern>/auth/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TokenVerifConntroller</servlet-name>
+        <url-pattern>/verif</url-pattern>
+        <url-pattern>/verif/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationController</servlet-name>
+        <url-pattern>/register</url-pattern>
+        <url-pattern>/register/*</url-pattern>
+    </servlet-mapping>
+</web-app>
