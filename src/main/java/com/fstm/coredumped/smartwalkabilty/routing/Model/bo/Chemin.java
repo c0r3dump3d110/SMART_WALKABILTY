@@ -39,4 +39,12 @@ public class Chemin
     {
         return vertices.stream().anyMatch(vertex -> vertex.getArrive().equals(g) || vertex.getDepart().equals(g));
     }
+
+    @Override
+    public String toString() {
+        return "Chemin{" +
+                "vertices=" + vertices +
+                ", annonces=" + annonces +
+                '}';
+    }
 }

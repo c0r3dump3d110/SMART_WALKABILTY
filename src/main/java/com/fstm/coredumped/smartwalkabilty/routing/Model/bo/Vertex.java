@@ -75,4 +75,14 @@ public class Vertex
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Vertex{" +
+                "id=" + id +
+                ", depart=" + depart +
+                ", Arrive=" + Arrive +
+                ", distance=" + distance +
+                '}';
+    }
 }

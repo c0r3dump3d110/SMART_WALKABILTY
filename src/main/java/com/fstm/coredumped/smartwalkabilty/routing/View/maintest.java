@@ -33,7 +33,7 @@ public class maintest {
          graph.Add_Route(new Vertex(inte,arr,1));
          graph.Add_Route(new Vertex(inte7,arr,13));
          List<Chemin> g= new Dijkistra().doAlgo(graph,depart,arr);
-
+         System.out.println(g);
     }
 
 
