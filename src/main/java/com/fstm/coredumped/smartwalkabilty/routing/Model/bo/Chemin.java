@@ -1,29 +1,42 @@
-package com.fstm.coredumped.smartwalkabilty.routing.model.bo;
+package com.fstm.coredumped.smartwalkabilty.routing.Model.bo;
+
+import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 
 import java.util.*;
 
 public class Chemin
 {
-    Set<Vertex> Chem=new HashSet<Vertex>();
-    Set Annonces;
+    Set<Vertex> vertices =new HashSet<Vertex>();
+    Set<Annonce> annonces =new HashSet<Annonce>();
 
-
-    public Set<Vertex> getChem() {
-        return Chem;
+    public Set<Annonce> getAnnonces() {
+        return annonces;
     }
 
-    public void setChem(Set<Vertex> chem) {
-        Chem = chem;
+    public void setAnnonces(Set<Annonce> annonces) {
+        this.annonces = annonces;
+    }
+    public void Add_Annonce(Annonce annonce)
+    {
+        annonces.add(annonce);
+    }
+    public Set<Vertex> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(Set<Vertex> vertices) {
+        this.vertices = vertices;
     }
 
     public Chemin() {}
 
     public void Add_Route(Vertex vertex)
     {
-        Chem.add(vertex);
+        vertices.add(vertex);
     }
     public boolean ContainsGeoPoint(GeoPoint g)
     {
-        return Chem.stream().anyMatch(vertex -> vertex.getArrive().equals(g) || vertex.getDepart().equals(g));
+        return vertices.stream().anyMatch(vertex -> vertex.getArrive().equals(g) || vertex.getDepart().equals(g));
     }
 }

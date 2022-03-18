@@ -1,6 +1,6 @@
-package com.fstm.coredumped.smartwalkabilty.routing.model.dao;
+package com.fstm.coredumped.smartwalkabilty.routing.Model.dao;
 
-import com.fstm.coredumped.smartwalkabilty.routing.model.bo.Graph;
+import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Graph;
 
 public interface IDAOGraph {
     // to create a graph we need to have the two points source and target

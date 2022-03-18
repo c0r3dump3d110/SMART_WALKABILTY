@@ -1,9 +1,17 @@
-package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
+package com.fstm.coredumped.smartwalkabilty.common.Model.bo;
+
+import java.util.Objects;
 
 public class GeoPoint {
     private static int num=0;
     public GeoPoint() {
 
+    }
+
+    public GeoPoint(double laltittude, double longtitude) {
+        this.laltittude = laltittude;
+        this.longtitude = longtitude;
+        id=++num;
     }
 
     public GeoPoint(int id, double laltittude, double longtitude) {
@@ -12,7 +20,7 @@ public class GeoPoint {
         this.longtitude = longtitude;
     }
 
-    private int id=++num;
+    private int id;
     private double laltittude;
     private double longtitude;
 
@@ -38,9 +46,26 @@ public class GeoPoint {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GeoPoint geoPoint = (GeoPoint) o;
+        return id == geoPoint.id && Double.compare(geoPoint.laltittude, laltittude) == 0 && Double.compare(geoPoint.longtitude, longtitude) == 0;
+    }
 
+    @Override
+    public String toString() {
+        return "GeoPoint{" +
+                "id=" + id +
+                ", laltittude=" + laltittude +
+                ", longtitude=" + longtitude +
+                '}';
+    }
 
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, laltittude, longtitude);
+    }
 }
+

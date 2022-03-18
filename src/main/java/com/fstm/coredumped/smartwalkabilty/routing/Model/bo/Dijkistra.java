@@ -1,11 +1,13 @@
-package com.fstm.coredumped.smartwalkabilty.routing.model.bo;
+package com.fstm.coredumped.smartwalkabilty.routing.Model.bo;
+import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+
 import java.util.*;
 
 public class Dijkistra implements IAlgo
 {
     private static int numberOfAltCheminsToCreate=2;
     private static double infinite=999999999999.0;
-    private static Point getPoint(List<Point> Q,GeoPoint p)
+    private static Point getPoint(List<Point> Q, GeoPoint p)
     {
         try {
             return Q.stream().filter(e->e.getGeoPoint().equals(p)).findFirst().get();

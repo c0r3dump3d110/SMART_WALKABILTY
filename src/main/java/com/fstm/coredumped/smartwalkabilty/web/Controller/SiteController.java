@@ -1,14 +1,13 @@
 package com.fstm.coredumped.smartwalkabilty.web.Controller;
 
+import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.*;
-import com.fstm.coredumped.smartwalkabilty.web.Model.dao.DAOAnnonce;
 import com.fstm.coredumped.smartwalkabilty.web.Model.dao.DAOSite;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Blob;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;

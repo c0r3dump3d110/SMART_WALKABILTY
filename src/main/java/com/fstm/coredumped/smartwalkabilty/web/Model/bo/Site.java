@@ -1,9 +1,10 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
+import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class Site
 {
