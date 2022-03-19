@@ -2,6 +2,7 @@ package com.fstm.coredumped.smartwalkabilty.routing.Model.bo;
 
 import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.*;
 
 public class Graph
@@ -27,5 +28,19 @@ public class Graph
     }
     public boolean contains(GeoPoint s){
         return Gr.containsKey(s);
+    }
+
+    @Override
+    public String toString() {
+        return "Graph{" +
+                "Gr=" + Gr +
+                '}';
+    }
+
+    public double getDistance(GeoPoint p1, GeoPoint p2){
+        return Math.sqrt(
+                Math.pow((p1.getLongtitude() - p2.getLongtitude()), 2)+
+                        Math.pow((p1.getLaltittude() - p2.getLaltittude()), 2)
+        );
     }
 }

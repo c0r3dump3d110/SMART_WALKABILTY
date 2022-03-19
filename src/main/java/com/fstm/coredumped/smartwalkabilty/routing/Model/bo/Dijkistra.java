@@ -75,6 +75,11 @@ public class Dijkistra implements IAlgo
 
     private Map<GeoPoint, GeoPoint> doAlgoDij(Graph graph, GeoPoint depart, GeoPoint arr)
     {
+        if(!graph.contains(depart)&& !graph.contains(arr)){
+            System.err.println("one of the points is not in the graph");
+            return new HashMap<GeoPoint,GeoPoint>();
+        }
+
         PriorityQueue<Point> Q =new PriorityQueue<Point>();
         List<Point> points=new LinkedList<Point>();
         Map<GeoPoint,GeoPoint> dictionary=new HashMap<GeoPoint,GeoPoint>();

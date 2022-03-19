@@ -51,9 +51,8 @@ public class GeoPoint {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GeoPoint geoPoint = (GeoPoint) o;
-        return id == geoPoint.id && Double.compare(geoPoint.laltittude, laltittude) == 0 && Double.compare(geoPoint.longtitude, longtitude) == 0;
+        return Double.compare(geoPoint.laltittude, laltittude) == 0 && Double.compare(geoPoint.longtitude, longtitude) == 0;
     }
-
     @Override
     public String toString() {
         return "GeoPoint{" +
@@ -65,7 +64,7 @@ public class GeoPoint {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, laltittude, longtitude);
+        return Objects.hash(laltittude, longtitude);
     }
 }
 

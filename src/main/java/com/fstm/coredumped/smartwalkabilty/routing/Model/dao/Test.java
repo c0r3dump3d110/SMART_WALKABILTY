@@ -12,11 +12,13 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        GeoPoint p1 = new GeoPoint(-7.5932469, 33.5883562);
-        GeoPoint p2 = new GeoPoint(-7.5942485, 33.5779598);
+        GeoPoint p1 = new GeoPoint(-7.640186, 33.5368971);
+        GeoPoint p2 = new GeoPoint(-7.5708861, 33.5611801);
 
         Graph graph = new DAOGraph().getTheGraph(p1, p2);
+
         List<Chemin> chemins = new Dijkistra().doAlgo(graph, p1, p2);
+
 
         System.out.println(chemins);
     }
