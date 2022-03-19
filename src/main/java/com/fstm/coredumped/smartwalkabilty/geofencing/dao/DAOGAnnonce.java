@@ -3,9 +3,10 @@ package com.fstm.coredumped.smartwalkabilty.geofencing.dao;
 import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Chemin;
 import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Vertex;
+import com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 
-import java.awt.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,42 +15,30 @@ import java.util.Set;
 
 public class DAOGAnnonce {
 
-    /*public Set<Integer> getSitesOfChemin(Chemin chemin, double radius) throws SQLException {
-        Set<Integer> idSet = new HashSet<Integer>();
-        String st_buffer = "ST_Buffer('LINESTRING(";
-        for (Vertex v : chemin.getVertices()){
-            st_buffer += v.getDepart() + " " + v.getArrive() + ",";
-        }
-        st_buffer = st_buffer.substring(0, st_buffer.length() - 1);
-        st_buffer += ")," + radius + " ,'endcap=round join=round');";
-        Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
-        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE"
-        + "ST_Contains(?,sitegeom) == true");
-        ps.setString(1,st_buffer);
-
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            idSet.add(rs.getInt("id"));
-        }
-        return idSet;
-    }*/
     public Set<Integer> getSitesOfChemin(Chemin chemin, double radius) throws SQLException {
         Set<Integer> idSet = new HashSet<Integer>();
-        Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
+        Connection connection = Connexion.getConnection();
         List<Integer> list = new ArrayList<Integer>();
-        //String listOfIds = "(";
-        for (Vertex v : chemin.getVertices()){
-            //listOfIds += " " + v.getId()+",";
-            list.add(v.getId());
-        }
-        //listOfIds = listOfIds.substring(0, listOfIds.length() - 1);
-        //listOfIds += ")";
+        String listOfGid = "( ";
 
-        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE"
-                + "ST_Contains(ST_Buffer(ST_Collect(SELECT the_geom FROM ways WHERE gid IN ?),?),sitegeom);");
-        //ps.setString(1,listOfIds);
-        ps.setDouble(2,radius);
-        ps.setArray(1,connection.createArrayOf("bigint",list.toArray()));
+        for (Vertex v : chemin.getVertices()){
+            //list.add(v.getId());
+            listOfGid += v.getId()+",";
+        }
+        listOfGid = listOfGid.substring(0, listOfGid.length() - 1);
+
+        listOfGid += ")";
+
+        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site\n" +
+                "WHERE \n" +
+                "ST_Contains(ST_Buffer(ST_SetSRID( (SELECT ST_Union(( SELECT ARRAY(( SELECT the_geom FROM ways WHERE gid\n" +
+                "\t\t\t\t\t\t\t\t IN "+ listOfGid +" ))" +
+                ")))\n" +
+                "\t\t\t\t\t\t\t\t , 4326)::geography,?)::geometry,geomsite) ");
+
+        //ps.setArray(1,connection.createArrayOf("bigint",list.toArray()));
+        //ps.setString(1,listOfGid);
+        ps.setDouble(1,radius);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             idSet.add(rs.getInt("id"));
@@ -61,10 +50,10 @@ public class DAOGAnnonce {
         Set<Integer> idSet = new HashSet<Integer>();
         Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
 
-        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE"
-                + "ST_Contains(ST_Buffer(ST_SetSRID(ST_MakePoint(?,?), 4326),?),sitegeom);");
-        ps.setDouble(1,point.getLongtitude());
-        ps.setDouble(2,point.getLaltittude());
+        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE "
+                + "ST_Contains(ST_Buffer(ST_SetSRID(ST_MakePoint(?,?), 4326)::geography,?)::geometry,geomsite);");
+        ps.setDouble(1,point.getLaltittude());
+        ps.setDouble(2,point.getLongtitude());
         ps.setDouble(3,radius);
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
@@ -72,18 +61,6 @@ public class DAOGAnnonce {
         }
         return idSet;
     }
-    /*public Set<Integer> getSitesOfVertex(Vertex vertex) throws SQLException {
-        Set<Integer> idSet = new HashSet<Integer>();
-        Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
-        PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE"
-                + "ST_Contains(ST_Buffer(ST_Collect(SELECT the_geom FROM ways WHERE gid IN ?)),sitegeom) == true");
-        ps.setString(1,);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()){
-            idSet.add(rs.getInt("id"));
-        }
-            return idSet;
-    }*/
 
     public Set<Annonce> getAnnoncesByIdSite (int idSite) throws SQLException {
         Set<Annonce> annonceSet = new HashSet<Annonce>();
