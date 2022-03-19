@@ -20,6 +20,7 @@ public class DAOSite implements IDAO<Site>{
 
     @Override
     public boolean Create(Site obj) {
+        boolean returnBool = false;
         try {
             Connexion.getCon().setAutoCommit(false);
 
@@ -36,7 +37,7 @@ public class DAOSite implements IDAO<Site>{
 
             Connexion.getCon().commit();
             Connexion.getCon().setAutoCommit(true);
-            return true;
+            returnBool = true;
         }catch (SQLException e){
             try {
                 Connexion.getCon().rollback();
@@ -49,7 +50,23 @@ public class DAOSite implements IDAO<Site>{
             return false;
         }
 
-
+        try{
+            Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO site "
+            + "(idSite, latitude, longitude, sitegeom)"
+            + "VALUES (?,?,?,ST_SetSRID(ST_MakePoint(?,?), 4326))");
+            ps.setInt(1,obj.getId());
+            ps.setDouble(2,obj.getLocalisation().getLaltittude());
+            ps.setDouble(3,obj.getLocalisation().getLongtitude());
+            ps.setDouble(4,obj.getLocalisation().getLaltittude());
+            ps.setDouble(5,obj.getLocalisation().getLongtitude());
+            ps.executeUpdate();
+            connection.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 
