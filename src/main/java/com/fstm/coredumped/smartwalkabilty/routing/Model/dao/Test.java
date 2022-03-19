@@ -1,37 +1,23 @@
 package com.fstm.coredumped.smartwalkabilty.routing.Model.dao;
 
+import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Chemin;
+import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Dijkistra;
+import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Graph;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        try {
-            Connection c =Connexion.getConnection();
-            Statement stmnt = c.createStatement();
-            ResultSet resultSet = stmnt.executeQuery("SELECT * FROM ways LIMIT 10;");
+        GeoPoint p1 = new GeoPoint(-7.5923456,33.5839232);
+        GeoPoint p2 = new GeoPoint(-7.5267593,33.5755403);
 
-            while (resultSet.next()){
-                double cost = resultSet.getDouble("cost");
-                int gid = resultSet.getInt("gid");
-                int source = resultSet.getInt("source");
-                int target = resultSet.getInt("target");
-                System.out.println("gid: "+gid);
-                System.out.println("cost: "+cost);
-                System.out.println("source: "+source);
-                System.out.println("target: "+target);
+        Graph graph = new DAOGraph().getTheGraph(p1, p2);
+        List<Chemin> chemins = new Dijkistra().doAlgo(graph, p1, p2);
 
-            }
-
-            resultSet.close();
-            stmnt.close();
-            c.close();
-
-        }catch (Exception e){
-            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
-
-
+        System.out.println(chemins);
     }
 }
