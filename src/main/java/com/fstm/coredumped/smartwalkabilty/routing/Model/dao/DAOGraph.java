@@ -15,6 +15,8 @@ public class DAOGraph implements IDAOGraph {
     public Graph getTheGraph(GeoPoint source, GeoPoint target) {
         Graph graph = new Graph();
         // calculate distance:
+
+
         double distance = Math.sqrt(
                 Math.pow((source.getLongtitude() - target.getLongtitude()), 2)+
                         Math.pow((source.getLaltittude() - target.getLaltittude()), 2)
