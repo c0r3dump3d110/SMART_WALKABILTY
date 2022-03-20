@@ -1,4 +1,4 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.dao;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

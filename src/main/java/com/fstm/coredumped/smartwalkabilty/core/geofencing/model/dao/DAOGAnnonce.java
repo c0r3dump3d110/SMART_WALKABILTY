@@ -1,9 +1,9 @@
-package com.fstm.coredumped.smartwalkabilty.geofencing.dao;
+package com.fstm.coredumped.smartwalkabilty.core.geofencing.model.dao;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Chemin;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Vertex;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Chemin;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.Connexion;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 
 
@@ -48,7 +48,7 @@ public class DAOGAnnonce {
 
     public Set<Integer> getSitesOfPoint(GeoPoint point, double radius) throws SQLException {
         Set<Integer> idSet = new HashSet<Integer>();
-        Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
+        Connection connection = com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.Connexion.getConnection();
 
         PreparedStatement ps = connection.prepareStatement("SELECT id FROM site WHERE "
                 + "ST_Contains(ST_Buffer(ST_SetSRID(ST_MakePoint(?,?), 4326)::geography,?)::geometry,geomsite);");

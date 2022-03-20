@@ -1,4 +1,4 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.bo;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 
 import java.util.HashSet;
 import java.util.Set;

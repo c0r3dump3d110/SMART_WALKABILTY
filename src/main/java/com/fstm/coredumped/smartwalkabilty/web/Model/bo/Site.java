@@ -1,6 +1,6 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 
 import java.util.Date;
 import java.util.LinkedList;

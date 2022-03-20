@@ -1,6 +1,6 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.bo;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 
 import java.util.List;
 

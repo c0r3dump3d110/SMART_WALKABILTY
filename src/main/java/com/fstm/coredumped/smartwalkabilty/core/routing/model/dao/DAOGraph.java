@@ -1,15 +1,14 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.dao;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.dao;
 
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Graph;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Vertex;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.service.GraphOperator;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.service.GraphOperator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class DAOGraph implements IDAOGraph {
 

@@ -1,11 +1,10 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.dao;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.dao;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
-import com.fstm.coredumped.smartwalkabilty.geofencing.dao.DAOGAnnonce;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Chemin;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Dijkistra;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Graph;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Vertex;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.dao.DAOGAnnonce;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Chemin;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Dijkistra;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
 
 import java.sql.SQLException;
 import java.util.List;

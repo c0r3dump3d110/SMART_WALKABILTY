@@ -1,6 +1,6 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.dao;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.*;
 
 import java.sql.*;
@@ -51,7 +51,7 @@ public class DAOSite implements IDAO<Site>{
         }
 
         try{
-            Connection connection = com.fstm.coredumped.smartwalkabilty.routing.Model.dao.Connexion.getConnection();
+            Connection connection = com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.Connexion.getConnection();
             PreparedStatement ps = connection.prepareStatement("INSERT INTO site "
             + "(idSite, latitude, longitude, sitegeom)"
             + "VALUES (?,?,?,ST_SetSRID(ST_MakePoint(?,?), 4326))");

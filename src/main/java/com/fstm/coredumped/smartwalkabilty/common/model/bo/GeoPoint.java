@@ -1,4 +1,4 @@
-package com.fstm.coredumped.smartwalkabilty.common.Model.bo;
+package com.fstm.coredumped.smartwalkabilty.common.model.bo;
 
 import java.util.Objects;
 

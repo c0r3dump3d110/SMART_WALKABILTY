@@ -1,10 +1,9 @@
-package com.fstm.coredumped.smartwalkabilty.routing.Model.service;
+package com.fstm.coredumped.smartwalkabilty.core.routing.model.service;
 
-import com.fstm.coredumped.smartwalkabilty.common.Model.bo.GeoPoint;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Graph;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.Vertex;
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 

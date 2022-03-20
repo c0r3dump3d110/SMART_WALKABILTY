@@ -1,7 +1,7 @@
-package com.fstm.coredumped.smartwalkabilty.geofencing.bo;
+package com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo;
 
-import com.fstm.coredumped.smartwalkabilty.geofencing.dao.DAOGAnnonce;
-import com.fstm.coredumped.smartwalkabilty.routing.Model.bo.*;
+import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.dao.DAOGAnnonce;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.*;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.*;
 
 import java.sql.SQLException;
