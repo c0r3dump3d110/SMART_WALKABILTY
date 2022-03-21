@@ -54,6 +54,7 @@ public class Chemin
         return "Chemin{" +
                 "vertices=" + vertices +
                 ", annonces=" + annonces +
+                ", priority=" + priority +
                 '}';
     }
 }

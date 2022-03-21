@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        GeoPoint p1 = new GeoPoint(-7.6178273, 33.5432284);
-        GeoPoint p2 = new GeoPoint(-7.5932129,33.542226);
+        GeoPoint p1 = new GeoPoint(-7.5801845, 33.555842);
+        GeoPoint p2 = new GeoPoint(-7.5807727, 33.5582727);
 
         Graph graph = new DAOGraph().getTheGraph(p1, p2);
 
