@@ -9,6 +9,15 @@ public class Chemin
 {
     Set<Vertex> vertices =new HashSet<Vertex>();
     Set<Annonce> annonces =new HashSet<Annonce>();
+    int priority;
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
     public Set<Annonce> getAnnonces() {
         return annonces;

@@ -138,12 +138,15 @@ public class Dijkistra implements IAlgo
         List<Chemin> list=new LinkedList<Chemin>();
         Map<GeoPoint,GeoPoint> G= doAlgoDij(graph,depart,arr);
         Chemin chemin=IAlgo.Construct_Chemin(G,graph,arr);
+        chemin.setPriority(1);
         list.add(chemin);
         List<GeoPoint> ToExclude=new ArrayList<GeoPoint>();
         for (int i = 0; i < numberOfAltCheminsToCreate; i++) {
             GeoPoint inter= get_Point_Not_in_Map(chemin, graph,ToExclude);
             if(inter==null)break;
-            list.add(IAlgo.Construct_Chemin(Objects.requireNonNull(doAlgoDij(graph, depart, arr, inter)), graph, arr));
+            chemin=IAlgo.Construct_Chemin(Objects.requireNonNull(doAlgoDij(graph, depart, arr, inter)), graph, arr);
+            chemin.setPriority(2+i);
+            list.add(chemin);
             ToExclude.add(inter);
         }
         return list;
