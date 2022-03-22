@@ -9,7 +9,7 @@ public interface IAlgo
 {
     List<Chemin> doAlgo(Graph graph, GeoPoint depart, GeoPoint arr);
     Chemin doAlgo(Graph graph, GeoPoint depart, GeoPoint arr,GeoPoint inter); //algo to pass by a specific point
-    static Chemin Construct_Chemin(Map<GeoPoint,GeoPoint> interChemin,Graph G,GeoPoint arr)
+    static Chemin Construct_Chemin(Map<GeoPoint,GeoPoint> interChemin,Graph G,GeoPoint arr,GeoPoint depart)
     {
         Chemin chemin =new Chemin();
         GeoPoint ge=arr;
@@ -20,6 +20,7 @@ public interface IAlgo
             chemin.Add_Route(G.findVertex(another,ge));
             ge=another;
         }
-        return chemin;
+        if(ge.equals(depart)) return chemin;
+        return new Chemin();
     }
 }

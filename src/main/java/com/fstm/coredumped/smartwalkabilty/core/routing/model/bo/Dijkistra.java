@@ -141,7 +141,7 @@ public class Dijkistra implements IAlgo
         double it=1.5;
         do {
              Map<GeoPoint,GeoPoint> G= doAlgoDij(graph,depart,arr);
-             chemin = IAlgo.Construct_Chemin(G, graph, arr);
+             chemin = IAlgo.Construct_Chemin(G, graph, arr,depart);
              if(!chemin.getVertices().isEmpty())break;
              it=it+0.5;
              graph=new DAOGraph().getTheGraph(depart,arr,it);
@@ -152,7 +152,7 @@ public class Dijkistra implements IAlgo
         for (int i = 0; i < numberOfAltCheminsToCreate; i++) {
             GeoPoint inter= get_Point_Not_in_Map(chemin, graph,ToExclude);
             if(inter==null)break;
-            chemin=IAlgo.Construct_Chemin(Objects.requireNonNull(doAlgoDij(graph, depart, arr, inter)), graph, arr);
+            chemin=IAlgo.Construct_Chemin(Objects.requireNonNull(doAlgoDij(graph, depart, arr, inter)), graph, arr,depart);
             chemin.setPriority(2+i);
             list.add(chemin);
             ToExclude.add(inter);
@@ -163,6 +163,6 @@ public class Dijkistra implements IAlgo
     public Chemin doAlgo(Graph graph, GeoPoint depart, GeoPoint arr, GeoPoint inter) {
         Map<GeoPoint,GeoPoint> Ha=doAlgoDij(graph,depart,arr,inter);
         if(Ha==null)return null;
-        return IAlgo.Construct_Chemin(Ha,graph,arr);
+        return IAlgo.Construct_Chemin(Ha,graph,arr,depart);
     }
 }
