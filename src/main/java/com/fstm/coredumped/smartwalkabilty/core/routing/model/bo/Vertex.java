@@ -78,11 +78,6 @@ public class Vertex
 
     @Override
     public String toString() {
-        return "Vertex{" +
-                "id=" + id +
-                ", depart=" + depart +
-                ", Arrive=" + Arrive +
-                ", distance=" + distance +
-                '}';
+        return "["+this.depart.toString()+"], ["+this.Arrive.toString()+"]";
     }
 }

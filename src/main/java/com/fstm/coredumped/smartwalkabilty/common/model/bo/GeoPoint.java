@@ -55,11 +55,7 @@ public class GeoPoint {
     }
     @Override
     public String toString() {
-        return "GeoPoint{" +
-                "id=" + id +
-                ", laltittude=" + laltittude +
-                ", longtitude=" + longtitude +
-                '}';
+        return "["+this.laltittude+","+this.longtitude+"]";
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+import com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.DAOGraph;
 
 import java.util.*;
 
@@ -136,8 +137,15 @@ public class Dijkistra implements IAlgo
     public List<Chemin> doAlgo(Graph graph, GeoPoint depart, GeoPoint arr)
     {
         List<Chemin> list=new LinkedList<Chemin>();
-        Map<GeoPoint,GeoPoint> G= doAlgoDij(graph,depart,arr);
-        Chemin chemin=IAlgo.Construct_Chemin(G,graph,arr);
+        Chemin chemin;
+        double it=1.5;
+        do {
+             Map<GeoPoint,GeoPoint> G= doAlgoDij(graph,depart,arr);
+             chemin = IAlgo.Construct_Chemin(G, graph, arr);
+             if(!chemin.getVertices().isEmpty())break;
+             it=it+0.5;
+             graph=new DAOGraph().getTheGraph(depart,arr,it);
+        }while (chemin.getVertices().isEmpty());
         chemin.setPriority(1);
         list.add(chemin);
         List<GeoPoint> ToExclude=new ArrayList<GeoPoint>();

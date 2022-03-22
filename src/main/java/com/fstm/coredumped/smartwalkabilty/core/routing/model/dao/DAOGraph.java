@@ -11,9 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DAOGraph implements IDAOGraph {
-
     @Override
-    public Graph getTheGraph(GeoPoint source, GeoPoint target) {
+    public Graph getTheGraph(GeoPoint source, GeoPoint target){
+        return getTheGraph(source,target,1.5);
+    }
+
+
+    public Graph getTheGraph(GeoPoint source, GeoPoint target, double d) {
         Graph graph = new Graph();
         // calculate distance:
 
@@ -22,7 +26,7 @@ public class DAOGraph implements IDAOGraph {
                         Math.pow((source.getLaltittude() - target.getLaltittude()), 2)
         );
         // calculate the radius
-        double Radius = (distance/2.0)*1.5;
+        double Radius = (distance/2.0)*d;
 
         // calculate midPoint
         double Xcenter = (source.getLongtitude() + target.getLongtitude())/2.0;

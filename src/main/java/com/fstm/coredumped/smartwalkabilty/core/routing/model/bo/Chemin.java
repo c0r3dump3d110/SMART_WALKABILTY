@@ -51,10 +51,10 @@ public class Chemin
 
     @Override
     public String toString() {
-        return "Chemin{" +
-                "vertices=" + vertices +
-                ", annonces=" + annonces +
-                ", priority=" + priority +
+        return "{" +
+                "\"type\":"+ "\"LineString\","+
+                "\"coordinates\": "
+                 +vertices +
                 '}';
     }
 }
