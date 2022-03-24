@@ -1,11 +1,12 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Annonce
+public class Annonce implements Serializable
 {
     private int id;
     private Date dateDebut,dateFin;

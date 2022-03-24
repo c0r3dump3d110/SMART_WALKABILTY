@@ -1,8 +1,16 @@
 package com.fstm.coredumped.smartwalkabilty.common.model.bo;
 
+import static java.lang.Math.asin;
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class GeoPoint {
+public class GeoPoint implements Serializable {
+    public static long serialVersionUID=15L;
     private static int num=0;
     public GeoPoint() {
 
@@ -61,6 +69,25 @@ public class GeoPoint {
     @Override
     public int hashCode() {
         return Objects.hash(laltittude, longtitude);
+    }
+    public double distanceToInMeters(GeoPoint geoPoint)
+    {
+        double R = 6371;//EarthRadios
+        double lat1 = toRadians(laltittude);
+        double long1 = toRadians(longtitude);
+        double lat2 = toRadians(geoPoint.laltittude);
+        double long2 = toRadians(geoPoint.longtitude);
+        double dlong = long2 - long1;
+        double dlat = lat2 - lat1;
+        double ans = pow(sin(dlat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(dlong / 2), 2);
+        ans = 2 * asin(sqrt(ans));
+        ans*=R*1000;
+        return ans;
+    }
+    public static double toRadians(double ree)
+    {
+        double one_deg = (Math.PI) / 180;
+        return (one_deg * ree);
     }
 }
 

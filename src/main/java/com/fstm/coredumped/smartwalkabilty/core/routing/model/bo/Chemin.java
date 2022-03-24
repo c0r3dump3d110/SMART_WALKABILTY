@@ -3,9 +3,10 @@ package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Chemin
+public class Chemin implements Serializable
 {
     Set<Vertex> vertices =new HashSet<Vertex>();
     Set<Annonce> annonces =new HashSet<Annonce>();

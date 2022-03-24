@@ -49,8 +49,8 @@ public class DAOGraph implements IDAOGraph {
                     "\t, ?, ?\n" +
                     ")), the_geom);");
 
-            preparedStatement.setDouble(1, Ycenter);
-            preparedStatement.setDouble(2, Xcenter);
+            preparedStatement.setDouble(2, Ycenter);
+            preparedStatement.setDouble(1, Xcenter);
 
             preparedStatement.setInt(3, projection_system);
 

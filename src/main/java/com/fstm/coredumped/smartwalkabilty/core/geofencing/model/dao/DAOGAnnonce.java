@@ -34,7 +34,7 @@ public class DAOGAnnonce {
                 "ST_Contains(ST_Buffer(ST_SetSRID( (SELECT ST_Union(( SELECT ARRAY(( SELECT the_geom FROM ways WHERE gid\n" +
                 "\t\t\t\t\t\t\t\t IN "+ listOfGid +" ))" +
                 ")))\n" +
-                "\t\t\t\t\t\t\t\t , 4326)::geography,?)::geometry,geomsite) ");
+                "\t\t\t\t\t\t\t\t , 4326)::geography,?)::geometry,geomsite) ;");
 
         //ps.setArray(1,connection.createArrayOf("bigint",list.toArray()));
         //ps.setString(1,listOfGid);

@@ -1,6 +1,8 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
-public class Image {
+import java.io.Serializable;
+
+public class Image implements Serializable {
     private int id;
     private String urlImage;
     private Annonce annonce;

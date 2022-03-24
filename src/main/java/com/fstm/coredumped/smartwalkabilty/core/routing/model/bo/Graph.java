@@ -11,14 +11,16 @@ public class Graph
     public Map<GeoPoint, Set<Vertex>> getGr() {
         return Gr;
     }
-    public void Add_Route(Vertex vertex){
-        if(!Gr.containsKey(vertex.getDepart())){
-            Gr.put(vertex.getDepart(), new HashSet<Vertex>());
+    public void Add_Route(Vertex vertex) {
+        if (vertex.getArrive() != null && vertex.getDepart() != null) {
+            if (!Gr.containsKey(vertex.getDepart())) {
+                Gr.put(vertex.getDepart(), new HashSet<Vertex>());
+            }
+            if (!Gr.containsKey(vertex.getArrive())) {
+                Gr.put(vertex.getArrive(), new HashSet<Vertex>());
+            }
+            Gr.get(vertex.getDepart()).add(vertex);
         }
-        if(!Gr.containsKey(vertex.getArrive())){
-            Gr.put(vertex.getArrive(), new HashSet<Vertex>());
-        }
-        Gr.get(vertex.getDepart()).add(vertex);
     }
     public Vertex findVertex(GeoPoint depart,GeoPoint dest)
     {

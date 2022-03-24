@@ -2,9 +2,10 @@ package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Vertex
+public class Vertex implements Serializable
 {
     static int count=0;
     int id;

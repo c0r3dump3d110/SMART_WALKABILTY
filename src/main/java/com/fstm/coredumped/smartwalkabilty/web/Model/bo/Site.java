@@ -2,11 +2,12 @@ package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Site
+public class Site implements Serializable
 {
     private int id;
     private String Name;

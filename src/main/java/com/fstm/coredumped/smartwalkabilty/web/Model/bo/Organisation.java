@@ -1,9 +1,10 @@
 package com.fstm.coredumped.smartwalkabilty.web.Model.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
-public class Organisation {
+public class Organisation implements Serializable {
 
     public static String types[] = {"Entreprise","Organisation Non Commerciale"};
     // Attributs

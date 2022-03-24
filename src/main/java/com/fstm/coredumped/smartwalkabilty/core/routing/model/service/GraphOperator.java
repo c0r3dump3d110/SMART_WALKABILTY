@@ -3,6 +3,7 @@ package com.fstm.coredumped.smartwalkabilty.core.routing.model.service;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
+import jdk.nashorn.internal.objects.NativeUint8Array;
 
 import java.util.Map;
 import java.util.Set;
@@ -23,7 +24,11 @@ public class GraphOperator {
         double MinDist = Double.MAX_VALUE;
         GeoPoint resPoint = null;
         for (Map.Entry<GeoPoint, Set<Vertex>> entry: g.entrySet()){
-            double Dist = graph.getDistance(p, entry.getKey());
+            double Dist = Double.MAX_VALUE;
+            if(p!= null && entry.getKey() != null){
+                Dist = graph.getDistance(p, entry.getKey());
+            }
+
             if(Dist < MinDist){
                 MinDist = Dist;
                 resPoint = entry.getKey();

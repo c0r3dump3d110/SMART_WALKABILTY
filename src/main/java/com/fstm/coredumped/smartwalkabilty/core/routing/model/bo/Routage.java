@@ -12,7 +12,8 @@ public class Routage extends Subject
     private List<Chemin> chemins;
     private  IAlgo algo;
     private Graph graph;
-    private GeoPoint depart,arr;
+    private GeoPoint depart;
+    private GeoPoint arr;
 
     public Routage(IAlgo algo) {
         this.algo = algo;
@@ -22,7 +23,6 @@ public class Routage extends Subject
         this(new Dijkistra(), shortestPathReq.getDepPoint(), shortestPathReq.getArrPoint());
         this.graph = new DAOGraph().getTheGraph(this.depart, this.arr);
         this.Attach(new Geofencing(this, shortestPathReq.getPerimetre()));
-
     }
 
     public Routage(IAlgo algo, GeoPoint depart, GeoPoint arr) {
@@ -75,6 +75,6 @@ public class Routage extends Subject
 
     public void calculerChemins(){
         this.chemins = this.algo.doAlgo(this.graph, this.depart, this.arr);
-        this.notifyAll();
+        this.NotifyAll();
     }
 }
