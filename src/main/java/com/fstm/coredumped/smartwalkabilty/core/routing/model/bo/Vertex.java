@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class Vertex implements Serializable
 {
+    private static final long serialVersionUID=5L;
     static int count=0;
     int id;
     private GeoPoint depart;

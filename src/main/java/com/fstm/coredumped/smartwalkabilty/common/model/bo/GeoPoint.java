@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class GeoPoint implements Serializable {
-    public static long serialVersionUID=15L;
+    private static final long serialVersionUID=15L;
     private static int num=0;
     public GeoPoint() {
 
@@ -81,7 +81,7 @@ public class GeoPoint implements Serializable {
         double dlat = lat2 - lat1;
         double ans = pow(sin(dlat / 2), 2) + cos(lat1) * cos(lat2) * pow(sin(dlong / 2), 2);
         ans = 2 * asin(sqrt(ans));
-        ans*=R*1000;
+        ans*=1000*R;
         return ans;
     }
     public static double toRadians(double ree)

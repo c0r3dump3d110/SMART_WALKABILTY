@@ -86,12 +86,13 @@ public class Dijkistra implements IAlgo
         Map<GeoPoint,GeoPoint> dictionary=new HashMap<GeoPoint,GeoPoint>();
         for (GeoPoint p: graph.getGr().keySet())
         {
-            if(p!=null){
-            Point point;
-            if(p.equals(depart)) point=new Point(p,0);
-            else point=new Point(p);
-            points.add(point);
-            Q.add(point);
+            if(p!=null)
+            {
+                Point point;
+                if(p.equals(depart)) point=new Point(p,0);
+                else point=new Point(p);
+                points.add(point);
+                Q.add(point);
             }
         }
         while (!Q.isEmpty()){

@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Chemin implements Serializable
 {
+    private static final long serialVersionUID=10L;
     Set<Vertex> vertices =new HashSet<Vertex>();
     Set<Annonce> annonces =new HashSet<Annonce>();
     int priority;

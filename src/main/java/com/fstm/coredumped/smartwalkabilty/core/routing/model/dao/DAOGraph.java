@@ -29,8 +29,9 @@ public class DAOGraph implements IDAOGraph {
         double Radius = (distance/2.0)*d;
 
         // calculate midPoint
-        double Xcenter = (source.getLongtitude() + target.getLongtitude())/2.0;
         double Ycenter = (source.getLaltittude() + target.getLaltittude())/2.0;
+        double Xcenter = (source.getLongtitude() + target.getLongtitude())/2.0;
+
 
         // set a projection system
         int projection_system = 4326;
@@ -49,8 +50,9 @@ public class DAOGraph implements IDAOGraph {
                     "\t, ?, ?\n" +
                     ")), the_geom);");
 
-            preparedStatement.setDouble(2, Ycenter);
             preparedStatement.setDouble(1, Xcenter);
+            preparedStatement.setDouble(2, Ycenter);
+
 
             preparedStatement.setInt(3, projection_system);
 
@@ -63,8 +65,8 @@ public class DAOGraph implements IDAOGraph {
             while (resultSet.next()){
                 Vertex v = new Vertex();
                 v.setId(resultSet.getInt("id"));
-                v.setDepart(new GeoPoint(resultSet.getInt("source"), resultSet.getDouble("x1"), resultSet.getDouble("y1")));
-                v.setArrive(new GeoPoint(resultSet.getInt("target"), resultSet.getDouble("x2"), resultSet.getDouble("y2")));
+                v.setDepart(new GeoPoint(resultSet.getInt("source"), resultSet.getDouble("y1"), resultSet.getDouble("x1")));
+                v.setArrive(new GeoPoint(resultSet.getInt("target"), resultSet.getDouble("y2"), resultSet.getDouble("x2")));
                 v.setDistance(resultSet.getDouble("length_m"));
 
                 graph.Add_Route(v);
@@ -82,7 +84,7 @@ public class DAOGraph implements IDAOGraph {
             return graph;
         }catch (Exception e){
             System.out.println("Err in graph creation: "+e);
-            return graph;
+                                    return graph;
         }
     }
 }
