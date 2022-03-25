@@ -13,6 +13,7 @@ public class Vertex implements Serializable
     private GeoPoint depart;
     private GeoPoint Arrive;
     private double distance;
+    private double risk;
 
     public Vertex(GeoPoint depart, GeoPoint arrive, double distance) {
         this.depart = depart;
@@ -33,6 +34,14 @@ public class Vertex implements Serializable
 
     public GeoPoint getDepart() {
         return depart;
+    }
+
+    public double getRisk() {
+        return risk;
+    }
+
+    public void setRisk(double risk) {
+        this.risk = risk;
     }
 
     public void setDepart(GeoPoint depart) {
