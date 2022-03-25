@@ -6,6 +6,7 @@ import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathReq;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Routage;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
+import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Site;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -49,7 +50,7 @@ public class ClientHandler implements Runnable{
                 PerimetreReq req1 = (PerimetreReq) req;
                 // handle the case where the user requested juste the available announces
                 // in a given Radius
-                List<Annonce> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre());
+                List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre());
 
             }
 

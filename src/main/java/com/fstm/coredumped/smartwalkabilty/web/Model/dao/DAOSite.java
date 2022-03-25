@@ -58,8 +58,8 @@ public class DAOSite implements IDAO<Site>{
             ps.setInt(1,obj.getId());
             ps.setDouble(2,obj.getLocalisation().getLaltittude());
             ps.setDouble(3,obj.getLocalisation().getLongtitude());
-            ps.setDouble(4,obj.getLocalisation().getLaltittude());
-            ps.setDouble(5,obj.getLocalisation().getLongtitude());
+            ps.setDouble(4,obj.getLocalisation().getLongtitude());
+            ps.setDouble(5,obj.getLocalisation().getLaltittude());
             ps.executeUpdate();
             connection.commit();
             return true;

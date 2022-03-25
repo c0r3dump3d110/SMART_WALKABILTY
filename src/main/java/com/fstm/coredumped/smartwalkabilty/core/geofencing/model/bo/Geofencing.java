@@ -4,10 +4,10 @@ import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.dao.DAOGAnnonce;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.*;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.*;
+import com.fstm.coredumped.smartwalkabilty.web.Model.dao.DAOSite;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +18,7 @@ public class Geofencing implements Observer{
 
     @Override
     public void update() {
-        //findAllAnnonces();
+        findAllAnnonces();
     }
 
     public Geofencing(Routage routnig, double radius){
@@ -32,22 +32,22 @@ public class Geofencing implements Observer{
             try {
                 Set<Integer> ids = daoga.getSitesOfChemin(c,this.radius);
                 for (Integer id : ids) {
-                    c.getAnnonces().addAll(daoga.getAnnoncesByIdSite(id));
+                    c.getSites().add(DAOSite.getDaoSite().findById(id));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
     }
-    public static List<Annonce> findAllAnnoncesByRadius(GeoPoint point, double radius){
-        List<Annonce> listAnnonces = new ArrayList<>();
+    public static List<Site> findAllAnnoncesByRadius(GeoPoint point, double radius){
+        List<Site> listSites = new ArrayList<>();
         DAOGAnnonce daoga = new DAOGAnnonce();
             try {
                 Set<Integer> ids = daoga.getSitesOfPoint(point,radius);
                 for (Integer id : ids) {
-                    listAnnonces.addAll(daoga.getAnnoncesByIdSite(id));
+                    listSites.add(DAOSite.getDaoSite().findById(id));
                 }
-                return listAnnonces;
+                return listSites;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 return null;
