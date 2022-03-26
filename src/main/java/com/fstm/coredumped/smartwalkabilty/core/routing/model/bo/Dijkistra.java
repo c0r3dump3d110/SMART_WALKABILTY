@@ -245,7 +245,7 @@ public class Dijkistra implements IAlgo
         List<Chemin> list=new LinkedList<Chemin>();
         Chemin cheminDist;
         Chemin cheminRisk;
-
+        System.out.println("Starting Algo");
         List<Map<GeoPoint,GeoPoint>> G= doAlgoDijDistanceAndRisk(graph,depart,arr);
 
         cheminDist = IAlgo.Construct_Chemin(G.get(0), graph, arr,depart);

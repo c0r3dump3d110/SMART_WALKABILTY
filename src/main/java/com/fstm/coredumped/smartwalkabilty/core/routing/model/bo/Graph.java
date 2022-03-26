@@ -53,7 +53,9 @@ public class Graph
         {
             GeoPoint v=Q.remove();
             if(v.equals(end))return true;
-            for (Vertex ver: Gr.get(v))
+            Set<Vertex> set=Gr.get(v);
+            if(set!=null)
+            for (Vertex ver: set )
             {
                 GeoPoint w=ver.getArrive();
                 if(!visited.contains(w)){

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 public class DAOGraph implements IDAOGraph {
     @Override
     public Graph getTheGraph(GeoPoint source, GeoPoint target){
-        return getTheGraph(source,target,1.5);
+        return getTheGraph(source,target,2.5);
     }
 
 
@@ -73,21 +73,20 @@ public class DAOGraph implements IDAOGraph {
 
             if (!graph.contains(target)){
                 System.out.println("Graph not containes the target");
-                new GraphOperator(graph).addPoint(target, null);
+                new GraphOperator(graph).addPoint(target, null,0);
             }
 
             if(!graph.contains(source)){
                 System.out.println("Graph not contains the source ");
-                new GraphOperator(graph).addPoint(source, target);
+                new GraphOperator(graph).addPoint(source, target,Radius);
             }
             if(graph.isConnected(source,target))
                 return graph;
             System.err.println("Graph is not connected");
-
             return  new DAOGraph().getTheGraph(source,target,d*2);
-
         }catch (Exception e){
             System.out.println("Err in graph creation: "+e);
+            e.printStackTrace();
             return graph;
         }
     }

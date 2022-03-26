@@ -16,7 +16,7 @@ public class GraphOperator {
 
     }
 
-    public boolean addPoint(GeoPoint p, GeoPoint end){
+    public boolean addPoint(GeoPoint p, GeoPoint end , double Radious){
 
         double Dist;
         Map<GeoPoint, Set<Vertex>> g = this.graph.getGr();
@@ -25,9 +25,9 @@ public class GraphOperator {
         for (Map.Entry<GeoPoint, Set<Vertex>> entry: g.entrySet()){
             //Dist = p.distanceToInMeters(entry.getKey());
             Dist = graph.getDistance(p, entry.getKey());
-
             if(Dist < MinDist){
-                if(end != null && graph.isConnected(p, end)){
+                if(end != null && graph.isConnected(entry.getKey(), end)&& Dist < Radious/3 )
+                {
                     MinDist = Dist;
                     resPoint = entry.getKey();
                 } else if(end == null){
@@ -36,8 +36,8 @@ public class GraphOperator {
                 }
             }
         }
+        if(MinDist==Double.MAX_VALUE)return false;
         Vertex v = new Vertex();
-
         if(end != null){
             v.setDepart(p);
             v.setArrive(resPoint);
