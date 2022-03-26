@@ -20,7 +20,6 @@ public class Graph
             Gr.put(vertex.getArrive(), new HashSet<Vertex>());
         }
         Gr.get(vertex.getDepart()).add(vertex);
-
     }
     public Vertex findVertex(GeoPoint depart,GeoPoint dest)
     {

@@ -8,7 +8,7 @@ import java.util.Map;
 public interface IAlgo
 {
     List<Chemin> doAlgo(Graph graph, GeoPoint depart, GeoPoint arr);
-    Chemin doAlgo(Graph graph, GeoPoint depart, GeoPoint arr,GeoPoint inter); //algo to pass by a specific point
+    Chemin doAlgo(Graph graph, GeoPoint depart, GeoPoint arr,GeoPoint inter); //algo to pass by a specific point on distance Calcule
     static Chemin Construct_Chemin(Map<GeoPoint,GeoPoint> interChemin,Graph G,GeoPoint arr,GeoPoint depart)
     {
         Chemin chemin =new Chemin();
@@ -20,7 +20,6 @@ public interface IAlgo
             chemin.Add_Route(G.findVertex(another,ge));
             ge=another;
         }
-        if(ge.equals(depart)) return chemin;
-        return new Chemin();
+        return chemin;
     }
 }
