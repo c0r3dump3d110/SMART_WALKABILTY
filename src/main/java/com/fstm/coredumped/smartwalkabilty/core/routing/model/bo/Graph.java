@@ -43,4 +43,25 @@ public class Graph
                         Math.pow((p1.getLaltittude() - p2.getLaltittude()), 2)
         );
     }
+    public boolean isConnected(GeoPoint start,GeoPoint end)
+    {
+        Set<GeoPoint> visited =new HashSet<>();
+        Queue<GeoPoint> Q=new LinkedList<>();
+        visited.add(start);
+        Q.offer(start);
+        while (!Q.isEmpty())
+        {
+            GeoPoint v=Q.remove();
+            if(v.equals(end))return true;
+            for (Vertex ver: Gr.get(v))
+            {
+                GeoPoint w=ver.getArrive();
+                if(!visited.contains(w)){
+                    visited.add(w);
+                    Q.offer(w);
+                }
+            }
+        }
+        return false;
+    }
 }

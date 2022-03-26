@@ -106,11 +106,15 @@ public class Dijkistra implements IAlgo
     }
     private Map<GeoPoint, GeoPoint> doAlgoDijDistance(Graph graph, GeoPoint depart, GeoPoint arr)
     {
+        if(graph.getGr().isEmpty())
+        {
+            System.err.println("Graph is empty");
+            return new HashMap<GeoPoint,GeoPoint>();
+        }
         if(!graph.contains(depart)&& !graph.contains(arr)){
             System.err.println("one of the points is not in the graph");
             return new HashMap<GeoPoint,GeoPoint>();
         }
-
         PriorityQueue<Point> QD =new PriorityQueue<Point>();
         Set<Point> points=new HashSet<>();
         Map<GeoPoint,GeoPoint> dictioDistance=new HashMap<GeoPoint,GeoPoint>();
@@ -244,14 +248,15 @@ public class Dijkistra implements IAlgo
         double it=1.5;
         int times=1;
         do {
-             List<Map<GeoPoint,GeoPoint>> G= doAlgoDijDistanceAndRisk(graph,depart,arr);
-             cheminDist = IAlgo.Construct_Chemin(G.get(0), graph, arr,depart);
-             cheminRisk = IAlgo.Construct_Chemin(G.get(1), graph, arr,depart);
-             if(!cheminDist.getVertices().isEmpty())break;
+             if(graph.isConnected(depart,arr))break;
+             System.err.println("Graph is not connected");
              it=it+times;
              times++;
              graph=new DAOGraph().getTheGraph(depart,arr,it);
-        }while (cheminDist.getVertices().isEmpty());
+        }while (graph.isConnected(depart,arr));
+        List<Map<GeoPoint,GeoPoint>> G= doAlgoDijDistanceAndRisk(graph,depart,arr);
+        cheminDist = IAlgo.Construct_Chemin(G.get(0), graph, arr,depart);
+        cheminRisk = IAlgo.Construct_Chemin(G.get(1), graph, arr,depart);
         cheminDist.setPriority(1);
         cheminRisk.setPriority(-1);
         list.add(cheminDist);
