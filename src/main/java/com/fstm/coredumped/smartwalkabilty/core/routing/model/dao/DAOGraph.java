@@ -53,7 +53,6 @@ public class DAOGraph implements IDAOGraph {
             preparedStatement.setDouble(1, Xcenter);
             preparedStatement.setDouble(2, Ycenter);
 
-
             preparedStatement.setInt(3, projection_system);
 
             // let the distance for now then we can use the Radius
@@ -72,16 +71,21 @@ public class DAOGraph implements IDAOGraph {
                 graph.Add_Route(v);
             }
 
-            if(!graph.contains(source)){
-                System.out.println("Graph not contains the source ");
-                new GraphOperator(graph).addPoint(source, 0);
-            }
             if (!graph.contains(target)){
                 System.out.println("Graph not containes the target");
-                new GraphOperator(graph).addPoint(target, 1);
+                new GraphOperator(graph).addPoint(target, null);
             }
 
-            return graph;
+            if(!graph.contains(source)){
+                System.out.println("Graph not contains the source ");
+                new GraphOperator(graph).addPoint(source, target);
+            }
+            if(graph.isConnected(source,target))
+                return graph;
+            System.err.println("Graph is not connected");
+
+            return  new DAOGraph().getTheGraph(source,target,d*2);
+
         }catch (Exception e){
             System.out.println("Err in graph creation: "+e);
             return graph;

@@ -245,28 +245,28 @@ public class Dijkistra implements IAlgo
         List<Chemin> list=new LinkedList<Chemin>();
         Chemin cheminDist;
         Chemin cheminRisk;
-        double it=1.5;
-        int times=1;
-        do {
-             if(graph.isConnected(depart,arr))break;
-             System.err.println("Graph is not connected");
-             it=it+times;
-             times++;
-             graph=new DAOGraph().getTheGraph(depart,arr,it);
-        }while (graph.isConnected(depart,arr));
+
         List<Map<GeoPoint,GeoPoint>> G= doAlgoDijDistanceAndRisk(graph,depart,arr);
+
         cheminDist = IAlgo.Construct_Chemin(G.get(0), graph, arr,depart);
         cheminRisk = IAlgo.Construct_Chemin(G.get(1), graph, arr,depart);
+
         cheminDist.setPriority(1);
         cheminRisk.setPriority(-1);
+
         list.add(cheminDist);
         list.add(cheminRisk);
+
         List<GeoPoint> ToExclude=new ArrayList<GeoPoint>();
+
         for (int i = 0; i < numberOfAltCheminsToCreate; i++) {
             GeoPoint inter= get_Point_Not_in_Map(cheminDist, graph,ToExclude);
-            if(inter==null)break;
+            if(inter==null)
+                break;
+
             cheminDist=IAlgo.Construct_Chemin(Objects.requireNonNull(doAlgoDijDistance(graph, depart, arr, inter)), graph, arr,depart);
             cheminDist.setPriority(2+i);
+
             list.add(cheminDist);
             ToExclude.add(inter);
         }

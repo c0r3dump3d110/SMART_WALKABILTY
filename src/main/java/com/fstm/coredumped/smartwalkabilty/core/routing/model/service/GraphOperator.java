@@ -16,9 +16,8 @@ public class GraphOperator {
 
     }
 
-    public boolean addPoint(GeoPoint p, int nature){
-        // nature = 0 => source
-        // nature = 1 => target
+    public boolean addPoint(GeoPoint p, GeoPoint end){
+
         double Dist;
         Map<GeoPoint, Set<Vertex>> g = this.graph.getGr();
         double MinDist = Double.MAX_VALUE;
@@ -28,13 +27,18 @@ public class GraphOperator {
             Dist = graph.getDistance(p, entry.getKey());
 
             if(Dist < MinDist){
-                MinDist = Dist;
-                resPoint = entry.getKey();
+                if(end != null && graph.isConnected(p, end)){
+                    MinDist = Dist;
+                    resPoint = entry.getKey();
+                } else if(end == null){
+                    MinDist = Dist;
+                    resPoint = entry.getKey();
+                }
             }
         }
         Vertex v = new Vertex();
 
-        if(nature == 0){
+        if(end != null){
             v.setDepart(p);
             v.setArrive(resPoint);
         } else {
