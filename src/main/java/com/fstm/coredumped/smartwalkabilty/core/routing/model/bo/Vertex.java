@@ -3,6 +3,7 @@ package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
 
@@ -14,7 +15,7 @@ public class Vertex implements Serializable
     private GeoPoint depart;
     private GeoPoint Arrive;
     private double distance;
-    private double risk=new Random().nextDouble()*100;
+    private double risk=new Random(new Date().getTime()).nextDouble()*1000000;
 
     public Vertex(GeoPoint depart, GeoPoint arrive, double distance) {
         this.depart = depart;
