@@ -43,8 +43,6 @@ public class SiteController extends HttpServlet {
         try {
 
             if(AnnonceController.verifyToken(Blob.Token)) {
-
-
                 if (Blob.id_site != 0) {
                    Site site = DAOSite.getDaoSite().findById(Blob.id_site);
                    response.getWriter().println(s.toJson(site));
@@ -55,16 +53,16 @@ public class SiteController extends HttpServlet {
                     response.getWriter().println(s.toJson(site));
                 }
                 else{
-                    response.getWriter().println("{ \"\":\" invalid info  \" }");
+                    response.getWriter().println("{ \"mes\":\" invalid info  \" }");
                 }
             }
             else{
-                response.getWriter().println("{ \"\":\" invalid Token  \" }");
+                response.getWriter().println("{ \"mes\":\" invalid Token  \" }");
             }
         }catch (Exception e)
         {
             System.err.println(e);
-            response.getWriter().println("{ \"\":\" invalid info \" }");
+            response.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
     }
 
@@ -91,14 +89,14 @@ public class SiteController extends HttpServlet {
                  if(DAOSite.getDaoSite().Create(site)){
                      resp.getWriter().println("{ \"id\":\" " + site.getId() + " \" }");
                  }else{
-                     resp.getWriter().println("{ \"\":\" invalid info \" }");
+                     resp.getWriter().println("{ \"mes\":\" invalid info \" }");
                  }
             } catch (Exception e) {
                 System.err.println(e);
-                resp.getWriter().println("{ \"\":\" invalid info \" }");
+                resp.getWriter().println("{ \"mes\":\" invalid info \" }");
 
             }
-        }else resp.getWriter().println("{ \"\":\" invalid info \" }");
+        }else resp.getWriter().println("{ \"mes\":\" invalid info \" }");
 
     }
     @Override
@@ -132,14 +130,14 @@ public class SiteController extends HttpServlet {
 
                 }catch (Exception e) {
                     System.err.println(e);
-                    resp.getWriter().println("{ \"\":\" invalid info \" }");
+                    resp.getWriter().println("{ \"mes\":\" invalid info \" }");
                 }
 
 
-        } else resp.getWriter().println("{ \"\":\" invalid info \" }");
+        } else resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }catch (Exception e){
             System.err.println(e);
-            resp.getWriter().println("{ \"\":\" invalid info \" }");
+            resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
     }
 
@@ -155,7 +153,7 @@ public class SiteController extends HttpServlet {
         IdsSiteBlob Blob = s.fromJson(req.getReader(), IdsSiteBlob.class);
         if(!AnnonceController.verifyToken(Blob.Token) ||(Blob.id_site==0&&Blob.site_ids==null))
         {
-            resp.getWriter().println("{ \"\":\" invalid info \" }");
+            resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
         else if(Blob.site_ids!=null)
         {
@@ -168,7 +166,7 @@ public class SiteController extends HttpServlet {
             }
             if(DAOSite.getDaoSite().deleteMultiple(sites))
                 resp.getWriter().println("{ \"succeeded\":\" "+num+" announces were Deleted \" }");
-            else resp.getWriter().println("{ \"\":\" Exception Happened it must be that some id is not in the db \" }");
+            else resp.getWriter().println("{ \"mes\":\" Exception Happened it must be that some id is not in the db \" }");
         }
 
         else{
@@ -178,14 +176,14 @@ public class SiteController extends HttpServlet {
         site.setId(Blob.id_site);
         if(DAOSite.getDaoSite().delete(site))
             resp.getWriter().println("{ \"succeeded\":\"Deleted\" }");
-        else resp.getWriter().println("{ \"\":\" doesn't exist \" }");
+        else resp.getWriter().println("{ \"mes\":\" doesn't exist \" }");
 
 
         }
         }
         catch (Exception e){
             System.err.println(e);
-            resp.getWriter().println("{ \"\":\" Exception Happened \" }");
+            resp.getWriter().println("{ \"mes\":\" Exception Happened \" }");
         }
 
     }

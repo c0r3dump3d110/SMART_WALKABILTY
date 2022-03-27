@@ -65,12 +65,12 @@ public class AnnonceController extends HttpServlet
                 response.getWriter().println(s.toJson(annonces));
             }
         }else {
-            response.getWriter().println("{ \"\":\" invalid Token  \" }");
+            response.getWriter().println("{ \"mes\":\" invalid Token  \" }");
         }
         }catch (Exception e)
         {
             System.err.println(e);
-            response.getWriter().println("{ \"\":\" invalid info \" }");
+            response.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
     }
 
@@ -86,16 +86,16 @@ public class AnnonceController extends HttpServlet
                     FillAnnonceFromBlob(Blob, annonce);
                     if (DAOAnnonce.getDAOAnnonce().Create(annonce)) {
                         resp.getWriter().println("{ \"id\": " + annonce.getId() + "  }");//return id if everything is okay
-                    } else resp.getWriter().println("{ \"\":\" invalid info \" }");
+                    } else resp.getWriter().println("{ \"mes\":\" invalid info \" }");
                 } catch (Exception e) {
                     System.err.println(e);
-                    resp.getWriter().println("{ \"\":\" invalid info \" }");
+                    resp.getWriter().println("{ \"mes\":\" invalid info \" }");
 
                 }
-            } else resp.getWriter().println("{ \"\":\" invalid info \" }");
+            } else resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }catch (Exception e){
             System.err.println(e);
-            resp.getWriter().println("{ \"\":\" invalid info \" }");
+            resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
     }
     @Override
@@ -106,7 +106,7 @@ public class AnnonceController extends HttpServlet
         try {
             AnnonceBlob Blob = s.fromJson(req.getReader(), AnnonceBlob.class);
             if(!DAOAnnonce.getDAOAnnonce().checkExiste(Blob.id)){
-                resp.getWriter().println("{ \"\":\" id doesn't exist \" }");
+                resp.getWriter().println("{ \"mes\":\" id doesn't exist \" }");
                 return;
             }
             if (Blob.verifyInfos() && verifyToken(Blob.Token)) {
@@ -118,12 +118,12 @@ public class AnnonceController extends HttpServlet
                     resp.getWriter().println("{ \"id\":\" " + annonce.getId() + " \" }");//return id if everything is okay
                 } catch (Exception e) {
                     System.err.println(e);
-                    resp.getWriter().println("{ \"\":\" invalid info \" }");
+                    resp.getWriter().println("{ \"mes\":\" invalid info \" }");
                 }
-            } else resp.getWriter().println("{ \"\":\" invalid info \" }");
+            } else resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }catch (Exception e){
             System.err.println(e);
-            resp.getWriter().println("{ \"\":\" invalid info \" }");
+            resp.getWriter().println("{ \"mes\":\" invalid info \" }");
         }
     }
 
@@ -155,7 +155,7 @@ public class AnnonceController extends HttpServlet
             IdsBlob Blob = s.fromJson(req.getReader(), IdsBlob.class);
             if(!verifyToken(Blob.Token) ||(Blob.id_annonce==0&&Blob.anonnce_ids==null))
             {
-                resp.getWriter().println("{ \"\":\" invalid info \" }");
+                resp.getWriter().println("{ \"mes\":\" invalid info \" }");
             }
             else if(Blob.anonnce_ids!=null)
             {
@@ -168,7 +168,7 @@ public class AnnonceController extends HttpServlet
                 }
                 if(DAOAnnonce.getDAOAnnonce().deleteMultiple(annonces))
                 resp.getWriter().println("{ \"succeeded\":\" "+num+" announces were Deleted \" }");
-                else resp.getWriter().println("{ \"\":\" Exception Happened it must be that some id is not in the db \" }");
+                else resp.getWriter().println("{ \"mes\":\" Exception Happened it must be that some id is not in the db \" }");
             }
             else
             {
@@ -176,11 +176,11 @@ public class AnnonceController extends HttpServlet
                 annonce.setId(Blob.id_annonce);
                 if(DAOAnnonce.getDAOAnnonce().delete(annonce))
                 resp.getWriter().println("{ \"succeeded\":\"Deleted\" }");
-                else resp.getWriter().println("{ \"\":\" doesn't exist \" }");
+                else resp.getWriter().println("{ \"mes\":\" doesn't exist \" }");
             }
         }catch (Exception e){
             System.err.println(e);
-            resp.getWriter().println("{ \"\":\" Exception Happened \" }");
+            resp.getWriter().println("{ \"mes\":\" Exception Happened \" }");
         }
     }
 
