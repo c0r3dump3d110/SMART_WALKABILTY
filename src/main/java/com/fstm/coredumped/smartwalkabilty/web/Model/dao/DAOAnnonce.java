@@ -212,6 +212,15 @@ public class DAOAnnonce implements IDAO<Annonce>{
             site.AddAnnonce(extractAnnonce(set));
         }
     }
+    public void extractSiteActiveAnnonces(Site site) throws SQLException
+    {
+        PreparedStatement statement=Connexion.getCon().prepareStatement("SELECT a.* FROM  annonces a JOIN annonces_con_site acs on a.id = acs.id_annonce where id_site=? and datedebut <= CURRENT_DATE and CURRENT_DATE <= datefin ");
+        statement.setInt(1,site.getId());
+        ResultSet set=statement.executeQuery();
+        while (set.next()){
+            site.AddAnnonce(extractAnnonce(set));
+        }
+    }
     public boolean checkExiste(int id) {
         try {
             PreparedStatement sql= null;
