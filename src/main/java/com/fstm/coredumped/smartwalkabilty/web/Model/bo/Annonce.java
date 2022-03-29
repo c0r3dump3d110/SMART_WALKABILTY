@@ -14,6 +14,16 @@ public class Annonce implements Serializable
     private String urlPrincipalImage;
     private List<Image> subImgs =new ArrayList<Image>();
     private List<Site> sites=new ArrayList<Site>();
+    private Categorie categorie;
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
     public Annonce(){}
     public Annonce(Date dateDebut, Date dateFin, String titre, String description, String urlPrincipalImage) {
         this.dateDebut = dateDebut;

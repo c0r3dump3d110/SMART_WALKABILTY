@@ -95,6 +95,7 @@ public class DAOAnnonce implements IDAO<Annonce>{
         annonce.setTitre(set.getString("titre"));
         annonce.setDateDebut(set.getDate("datedebut"));
         annonce.setDateFin(set.getDate("datefin"));
+        annonce.setCategorie(DAOCategorie.getDaoCategorie().getById(set.getInt("id_cat")));
         return annonce;
     }
 
@@ -216,6 +217,17 @@ public class DAOAnnonce implements IDAO<Annonce>{
     {
         PreparedStatement statement=Connexion.getCon().prepareStatement("SELECT a.* FROM  annonces a JOIN annonces_con_site acs on a.id = acs.id_annonce where id_site=? and datedebut <= CURRENT_DATE and CURRENT_DATE <= datefin ");
         statement.setInt(1,site.getId());
+        ResultSet set=statement.executeQuery();
+        while (set.next()){
+            site.AddAnnonce(extractAnnonce(set));
+        }
+    }
+    public void extractSiteActiveAnnonces_Categorie(Site site,List<Integer> catIds) throws SQLException
+    {
+        PreparedStatement statement=Connexion.getCon().prepareStatement("SELECT a.* FROM  annonces a JOIN annonces_con_site acs on a.id = acs.id_annonce where id_site=? and datedebut <= CURRENT_DATE and CURRENT_DATE <= datefin and id_cat in ?");
+        statement.setInt(1,site.getId());
+        Array array = Connexion.getCon().createArrayOf("bigint",catIds.toArray());
+        statement.setArray(2,array);
         ResultSet set=statement.executeQuery();
         while (set.next()){
             site.AddAnnonce(extractAnnonce(set));

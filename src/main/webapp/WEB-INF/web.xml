@@ -23,7 +23,14 @@
         <servlet-name>RegistrationController</servlet-name>
         <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.RegistrationController</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>CategorieController</servlet-name>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.CategorieController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategorieController</servlet-name>
+        <url-pattern>/categories</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AnnonceController</servlet-name>
         <url-pattern>/annonces</url-pattern>
