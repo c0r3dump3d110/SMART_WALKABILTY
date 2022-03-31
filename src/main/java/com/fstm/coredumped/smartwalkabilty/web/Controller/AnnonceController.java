@@ -5,6 +5,7 @@ import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Image;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Site;
 import com.fstm.coredumped.smartwalkabilty.web.Model.dao.DAOAnnonce;
+import com.fstm.coredumped.smartwalkabilty.web.Model.dao.DAOCategorie;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -33,6 +34,7 @@ public class AnnonceController extends HttpServlet
         String dateDebut,dateFin,Titre,Description,url,Token;
         int[] sites;
         String[] url_optionnel;
+        int id_cat;
         boolean verifyInfos()
         {
             if(dateDebut==null ||dateFin==null ||Titre==null||Description==null||url==null||Token==null||sites==null)return false;
@@ -134,6 +136,7 @@ public class AnnonceController extends HttpServlet
         annonce.setTitre(blob.Titre);
         annonce.setDescription(blob.Description);
         annonce.setUrlPrincipalImage(blob.url);
+        annonce.setCategorie(DAOCategorie.getDaoCategorie().getById(blob.id_cat));
         for (int st : blob.sites) {
             Site site = new Site();
             site.setId(st);

@@ -22,7 +22,7 @@ public class DAOAnnonce implements IDAO<Annonce>{
     {
         try {
             Connexion.getCon().setAutoCommit(false);
-            PreparedStatement preparedStatement= Connexion.getCon().prepareStatement("INSERT INTO Annonces (datedebut,datefin,titre,urlimageprincipale,description) VALUES (?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement= Connexion.getCon().prepareStatement("INSERT INTO Annonces (datedebut,datefin,titre,urlimageprincipale,description,id_cat) VALUES (?,?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS);
             fillStatement(obj, preparedStatement);
             preparedStatement.executeUpdate();
             ResultSet set= preparedStatement.getGeneratedKeys();
@@ -104,9 +104,9 @@ public class DAOAnnonce implements IDAO<Annonce>{
     {
         try {
             Connexion.getCon().setAutoCommit(false);
-            PreparedStatement preparedStatement= Connexion.getCon().prepareStatement("UPDATE  annonces SET datedebut=?,datefin=?,titre=?,urlimageprincipale=?,description=? where id=?");
+            PreparedStatement preparedStatement= Connexion.getCon().prepareStatement("UPDATE  annonces SET datedebut=?,datefin=?,titre=?,urlimageprincipale=?,description=?,id_cat=? where id=?");
             fillStatement(obj, preparedStatement);
-            preparedStatement.setInt(6,obj.getId());
+            preparedStatement.setInt(7,obj.getId());
             preparedStatement.executeUpdate();
             DAOImage.getDAOImage().clearImages(obj);
             for (Image img: obj.getSubImgs())
@@ -138,6 +138,7 @@ public class DAOAnnonce implements IDAO<Annonce>{
         preparedStatement.setString(3,obj.getTitre());
         preparedStatement.setString(4,obj.getUrlPrincipalImage());
         preparedStatement.setString(5,obj.getDescription());
+        preparedStatement.setInt(6,obj.getCategorie().getId());
     }
 
     @Override

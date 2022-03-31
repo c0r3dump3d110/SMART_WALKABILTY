@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -49,7 +50,7 @@ public class SiteController extends HttpServlet {
                 }
                 else if(Blob.id_organisation != 0)
                 {
-                    Site site = DAOSite.getDaoSite().findById(Blob.id_organisation);
+                    Collection<Site> site = DAOSite.getDaoSite().RetreveListSite(Blob.id_organisation);
                     response.getWriter().println(s.toJson(site));
                 }
                 else{
