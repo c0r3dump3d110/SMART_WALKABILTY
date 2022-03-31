@@ -53,13 +53,11 @@ public class DAOSite implements IDAO<Site>{
         try{
             Connection connection = com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.Connexion.getConnection();
             PreparedStatement ps = connection.prepareStatement("INSERT INTO site "
-            + "(idSite, latitude, longitude, sitegeom)"
-            + "VALUES (?,?,?,ST_SetSRID(ST_MakePoint(?,?), 4326))");
+            + "(id, latitude, longitude)"
+            + "VALUES (?,?,?)");
             ps.setInt(1,obj.getId());
             ps.setDouble(2,obj.getLocalisation().getLaltittude());
             ps.setDouble(3,obj.getLocalisation().getLongtitude());
-            ps.setDouble(4,obj.getLocalisation().getLongtitude());
-            ps.setDouble(5,obj.getLocalisation().getLaltittude());
             ps.executeUpdate();
             connection.commit();
             return true;
