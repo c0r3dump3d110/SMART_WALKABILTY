@@ -44,14 +44,15 @@ public class ClientHandler implements Runnable{
                 System.out.println("["+d1+"] starting routing ...");
                 routage = new Routage((ShortestPathReq) req);
                 routage.calculerChemins();
+                oos.writeObject(routage.getChemins());
             }
             else if(req instanceof PerimetreReq){
                 System.out.println("["+d1+"] user request announces in Radius: starting geofencing ...");
                 PerimetreReq req1 = (PerimetreReq) req;
                 // handle the case where the user requested juste the available announces
                 // in a given Radius
-                List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre());
-
+                List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre(),req1.getCategorie());
+                oos.writeObject(list);
             }
 
             d2 = LocalDateTime.now();
@@ -61,8 +62,6 @@ public class ClientHandler implements Runnable{
             System.out.println("it tooks: "+ d + " millis");
             System.out.println("in seconds: "+ TimeUnit.MICROSECONDS.toSeconds(d) + " seconds");
 
-
-            oos.writeObject(routage.getChemins());
             oos.flush();
         } catch (IOException e) {
             System.out.println("IO Problems: "+e.getMessage());

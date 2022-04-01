@@ -22,7 +22,7 @@ public class Routage extends Subject
     public Routage(ShortestPathReq shortestPathReq){
         this(new Dijkistra(), shortestPathReq.getDepPoint(), shortestPathReq.getArrPoint());
         this.graph = new DAOGraph().getTheGraph(this.depart, this.arr);
-        this.Attach(new Geofencing(this, shortestPathReq.getPerimetre()));
+        this.Attach(new Geofencing(this, shortestPathReq.getPerimetre(),shortestPathReq.getCategorie()));
     }
 
     public Routage(IAlgo algo, GeoPoint depart, GeoPoint arr) {

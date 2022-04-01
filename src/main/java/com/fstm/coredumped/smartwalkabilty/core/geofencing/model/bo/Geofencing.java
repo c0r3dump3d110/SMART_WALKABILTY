@@ -15,15 +15,16 @@ public class Geofencing implements Observer{
 
     Routage routing;
     double radius;
-
+    List<Integer> cats;
     @Override
     public void update() {
         findAllAnnonces();
     }
 
-    public Geofencing(Routage routnig, double radius){
+    public Geofencing(Routage routnig, double radius,List<Integer> cats){
         this.routing = routnig;
         this.radius = radius;
+        this.cats=cats;
     }
 
     void findAllAnnonces(){
@@ -32,20 +33,20 @@ public class Geofencing implements Observer{
             try {
                 Set<Integer> ids = daoga.getSitesOfChemin(c,this.radius);
                 for (Integer id : ids) {
-                    c.getSites().add(DAOSite.getDaoSite().findById(id));
+                    c.getSites().add(DAOSite.getDaoSite().findById(id,cats));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
     }
-    public static List<Site> findAllAnnoncesByRadius(GeoPoint point, double radius){
+    public static List<Site> findAllAnnoncesByRadius(GeoPoint point, double radius,List<Integer> cats){
         List<Site> listSites = new ArrayList<>();
         DAOGAnnonce daoga = new DAOGAnnonce();
             try {
                 Set<Integer> ids = daoga.getSitesOfPoint(point,radius);
                 for (Integer id : ids) {
-                    listSites.add(DAOSite.getDaoSite().findById(id));
+                    listSites.add(DAOSite.getDaoSite().findById(id,cats));
                 }
                 return listSites;
             } catch (SQLException throwables) {

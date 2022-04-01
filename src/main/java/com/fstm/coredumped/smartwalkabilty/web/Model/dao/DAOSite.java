@@ -6,6 +6,7 @@ import com.fstm.coredumped.smartwalkabilty.web.Model.bo.*;
 import java.sql.*;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class DAOSite implements IDAO<Site>{
     private static DAOSite daoSite=null;
@@ -94,6 +95,26 @@ public class DAOSite implements IDAO<Site>{
             {
                 site=extractSite(set);
                 DAOAnnonce.getDAOAnnonce().extractSiteAnnonces(site);
+                organisation=DAOOrganisation.getDaoOrganisation().findOrganisationById(set.getInt("id_organisation"));
+                site.setOrganisation(organisation);
+            }
+            return site;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+        }
+    }
+    public Site findById(int id, List<Integer> cats){
+        try {
+            Organisation organisation =null;
+            Site site=null;
+            PreparedStatement sql=Connexion.getCon().prepareStatement("SELECT *,location[0] as lat,location[1] as lng From site where id=?");
+            sql.setInt(1,id);
+            ResultSet set= sql.executeQuery();
+            if(set.next())
+            {
+                site=extractSite(set);
+                DAOAnnonce.getDAOAnnonce().extractSiteActiveAnnonces_Categorie(site,cats);
                 organisation=DAOOrganisation.getDaoOrganisation().findOrganisationById(set.getInt("id_organisation"));
                 site.setOrganisation(organisation);
             }
