@@ -136,6 +136,7 @@ public class Dijkistra implements IAlgo
             for (Vertex v: neis)
             {
                 Point neighbour=getPoint(points,v.getArrive());
+                if(neighbour!=null)
                 if(!neighbour.isVisitedDist()){
                       double temp=U.getDistance()+v.getDistance();
                       if(temp<neighbour.getDistance())
@@ -184,6 +185,7 @@ public class Dijkistra implements IAlgo
             for (Vertex v: neis)
             {
                 Point neighbour=getPoint(points,v.getArrive());
+                if(neighbour!=null)
                 if(!neighbour.isVisitedDist()){
                     double temp=U.getDistance()+v.getDistance();
                     if(temp<neighbour.getDistance())
@@ -201,6 +203,7 @@ public class Dijkistra implements IAlgo
             for (Vertex v: neis)
             {
                 Point neighbour=getPoint(points,v.getArrive());
+                if(neighbour!=null)
                 if(!neighbour.isVisitedRisk()){
                     double temp=U.getRisk()+v.getRisk();
                     if(temp<neighbour.getRisk())

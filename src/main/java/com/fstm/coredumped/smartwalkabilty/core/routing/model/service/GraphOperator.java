@@ -4,6 +4,7 @@ import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,17 +23,19 @@ public class GraphOperator {
         Map<GeoPoint, Set<Vertex>> g = this.graph.getGr();
         double MinDist = Double.MAX_VALUE;
         GeoPoint resPoint = null;
-        for (Map.Entry<GeoPoint, Set<Vertex>> entry: g.entrySet()){
+        for (GeoPoint entry: new HashSet<>(g.keySet())){
             //Dist = p.distanceToInMeters(entry.getKey());
-            Dist = graph.getDistance(p, entry.getKey());
+            Dist = graph.getDistance(p, entry);
             if(Dist < MinDist){
-                if(end != null && graph.isConnected(entry.getKey(), end)&& Dist < Radious/3 )
+                if(end != null && Dist < Radious/3  )
                 {
+                    if( graph.isConnected(entry, end)){
                     MinDist = Dist;
-                    resPoint = entry.getKey();
+                    resPoint = entry;
+                    }else g.remove(entry);
                 } else if(end == null){
                     MinDist = Dist;
-                    resPoint = entry.getKey();
+                    resPoint = entry;
                 }
             }
         }
