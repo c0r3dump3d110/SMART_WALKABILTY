@@ -38,6 +38,7 @@ public class AnnonceController extends HttpServlet
         boolean verifyInfos()
         {
             if(dateDebut==null ||dateFin==null ||Titre==null||Description==null||url==null||Token==null||sites==null)return false;
+            if(sites.length==0)return false;
             return true;
         }
     }
