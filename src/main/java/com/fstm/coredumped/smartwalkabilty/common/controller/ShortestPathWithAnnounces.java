@@ -8,7 +8,7 @@ import java.util.List;
 public class ShortestPathWithAnnounces extends RequestPerimetreAnnonce{
     private final GeoPoint pointArrivee;
 
-    public ShortestPathWithAnnounces(double perimetre, GeoPoint actualPoint, List<Categorie> categorieList, GeoPoint pointArrivee) {
+    public ShortestPathWithAnnounces(double perimetre, GeoPoint actualPoint, List<Integer> categorieList, GeoPoint pointArrivee) {
         super(perimetre, actualPoint, categorieList);
         this.pointArrivee = pointArrivee;
     }
