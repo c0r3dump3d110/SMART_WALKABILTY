@@ -15,7 +15,7 @@ public class Vertex implements Serializable
     private GeoPoint depart;
     private GeoPoint Arrive;
     private double distance;
-    private double risk=new Random(new Date().getTime()).nextDouble()*1000000;
+    private double risk ;
 
     public Vertex(GeoPoint depart, GeoPoint arrive, double distance) {
         this.depart = depart;

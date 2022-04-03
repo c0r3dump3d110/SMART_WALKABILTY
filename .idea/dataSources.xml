@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="PostgreSQL - DB_SMARTWALK@localhost" uuid="f0ca407c-8294-454a-a433-dbb06b5465b7">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/DB_SMARTWALK</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="osmoffdb@localhost" uuid="18854b2c-d472-4ecc-825e-62ac3c5eac33">
+    <data-source source="LOCAL" name="osmoffdb@localhost" uuid="a609c79f-0a54-495e-a661-2b2d99100d1a">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

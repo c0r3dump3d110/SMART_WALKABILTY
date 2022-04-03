@@ -43,7 +43,6 @@ public class DAOAnnonce implements IDAO<Annonce>{
             } catch (SQLException ex) {
                 System.err.println(ex);
                 return  false;
-
             }
             System.err.println(e);
             return false;
