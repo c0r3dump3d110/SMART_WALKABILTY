@@ -1,22 +1,17 @@
 package com.fstm.coredumped.smartwalkabilty.common.controller;
 
+import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Request implements Serializable {
-    protected final double perimetre;
-    protected final List<Integer> categorie = new ArrayList<Integer>();
+    private final GeoPoint actualPoint;
 
-    public Request(double perimetre) {
-        this.perimetre = perimetre;
+    protected Request(GeoPoint actualPoint) {
+        this.actualPoint = actualPoint;
     }
 
-    public double getPerimetre() {
-        return perimetre;
-    }
-
-    public List<Integer> getCategorie() {
-        return categorie;
+    public GeoPoint getActualPoint() {
+        return actualPoint;
     }
 }

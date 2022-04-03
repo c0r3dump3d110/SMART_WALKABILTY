@@ -1,6 +1,7 @@
 package com.fstm.coredumped.smartwalkabilty.core.routing.model.bo;
 
 import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathReq;
+import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathWithAnnounces;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.DAOGraph;
@@ -20,9 +21,14 @@ public class Routage extends Subject
     }
 
     public Routage(ShortestPathReq shortestPathReq){
-        this(new Dijkistra(), shortestPathReq.getDepPoint(), shortestPathReq.getArrPoint());
+        this(new Dijkistra(), shortestPathReq.getActualPoint(), shortestPathReq.getArrPoint());
         this.graph = new DAOGraph().getTheGraph(this.depart, this.arr);
-        this.Attach(new Geofencing(this, shortestPathReq.getPerimetre(),shortestPathReq.getCategorie()));
+
+    }
+    public Routage(ShortestPathWithAnnounces announcesReq){
+        this(new Dijkistra(), announcesReq.getActualPoint(), announcesReq.getPointArrivee());
+        this.graph = new DAOGraph().getTheGraph(this.depart, this.arr);
+        this.Attach(new Geofencing(this, announcesReq.getPerimetre(), announcesReq.getCategorieList()));
     }
 
     public Routage(IAlgo algo, GeoPoint depart, GeoPoint arr) {

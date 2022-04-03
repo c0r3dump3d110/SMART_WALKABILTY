@@ -1,21 +1,19 @@
 package com.fstm.coredumped.smartwalkabilty.core.server;
 
-import com.fstm.coredumped.smartwalkabilty.common.controller.PerimetreReq;
-import com.fstm.coredumped.smartwalkabilty.common.controller.Request;
+import com.fstm.coredumped.smartwalkabilty.common.controller.RequestPerimetre;
+import com.fstm.coredumped.smartwalkabilty.common.controller.RequestPerimetreAnnonce;
 import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathReq;
+import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathWithAnnounces;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Routage;
-import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Annonce;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Site;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -40,18 +38,23 @@ public class ClientHandler implements Runnable{
 
             d1 = LocalDateTime.now();
 
-            if(req instanceof ShortestPathReq){
+            if(req instanceof ShortestPathReq || req instanceof ShortestPathWithAnnounces){
                 System.out.println("["+d1+"] starting routing ...");
-                routage = new Routage((ShortestPathReq) req);
+                if(req instanceof ShortestPathReq)
+                    routage = new Routage((ShortestPathReq) req);
+                else
+                    routage = new Routage((ShortestPathWithAnnounces) req);
+
                 routage.calculerChemins();
                 oos.writeObject(routage.getChemins());
             }
-            else if(req instanceof PerimetreReq){
+
+            else if(req instanceof RequestPerimetreAnnonce){
                 System.out.println("["+d1+"] user request announces in Radius: starting geofencing ...");
-                PerimetreReq req1 = (PerimetreReq) req;
+                RequestPerimetreAnnonce req1 = (RequestPerimetreAnnonce) req;
                 // handle the case where the user requested juste the available announces
                 // in a given Radius
-                List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre(),req1.getCategorie());
+                List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre(),req1.getCategorieList());
                 oos.writeObject(list);
             }
 
