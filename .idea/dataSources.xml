@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/osmoffdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="DB_SMARTWALK@localhost" uuid="94320bf3-c2bc-49fc-8639-7e811e5ac61d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/DB_SMARTWALK</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

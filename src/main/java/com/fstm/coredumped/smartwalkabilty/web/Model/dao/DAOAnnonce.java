@@ -59,7 +59,7 @@ public class DAOAnnonce implements IDAO<Annonce>{
     {
         List<Annonce> annonces=new LinkedList<Annonce>();
         try {
-            PreparedStatement sql=Connexion.getCon().prepareStatement("SELECT A.* From annonces A JOIN annonces_Con_Site aCS on A.id = aCS.id_annonce JOIN site S  on aCS.id_site=S.id where id_organisation=?");
+            PreparedStatement sql=Connexion.getCon().prepareStatement("SELECT Distinct(A.id),A.* From annonces A JOIN annonces_Con_Site aCS on A.id = aCS.id_annonce JOIN site S  on aCS.id_site=S.id where id_organisation=?");
             sql.setInt(1,id_org);
             ResultSet set= sql.executeQuery();
             while (set.next()) annonces.add(extractAnnonce(set));
