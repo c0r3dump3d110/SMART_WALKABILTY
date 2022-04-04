@@ -1,9 +1,6 @@
 package com.fstm.coredumped.smartwalkabilty.core.server;
 
-import com.fstm.coredumped.smartwalkabilty.common.controller.RequestPerimetre;
-import com.fstm.coredumped.smartwalkabilty.common.controller.RequestPerimetreAnnonce;
-import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathReq;
-import com.fstm.coredumped.smartwalkabilty.common.controller.ShortestPathWithAnnounces;
+import com.fstm.coredumped.smartwalkabilty.common.controller.*;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Routage;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Site;
@@ -56,6 +53,12 @@ public class ClientHandler implements Runnable{
                 // in a given Radius
                 List<Site> list = Geofencing.findAllAnnoncesByRadius(req1.getActualPoint(), req1.getPerimetre(),req1.getCategorieList());
                 oos.writeObject(list);
+            }
+
+            else if(req instanceof DeclareDangerReq){
+                System.out.println("["+d1+"] user request Declaring danger ...");
+                DeclareDangerReq req1 = (DeclareDangerReq) req;
+
             }
 
             d2 = LocalDateTime.now();

@@ -4,7 +4,6 @@ package com.fstm.coredumped.smartwalkabilty.core.routing.model.dao;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Graph;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
-import com.fstm.coredumped.smartwalkabilty.core.routing.model.service.GraphOperator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,12 +72,12 @@ public class DAOGraph implements IDAOGraph {
 
             if (!graph.contains(target)){
                 System.out.println("Graph not containes the target");
-                new GraphOperator(graph).addPoint(target, null,0);
+                graph.addPoint(target, null,0);
             }
 
             if(!graph.contains(source)){
                 System.out.println("Graph not contains the source ");
-                new GraphOperator(graph).addPoint(source, target,Radius);
+                graph.addPoint(source, target,Radius);
             }
             if(graph.isConnected(source,target))
                 return graph;

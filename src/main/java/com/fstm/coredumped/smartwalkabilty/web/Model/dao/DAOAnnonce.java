@@ -224,7 +224,7 @@ public class DAOAnnonce implements IDAO<Annonce>{
     }
     public void extractSiteActiveAnnonces_Categorie(Site site,List<Integer> catIds) throws SQLException
     {
-        PreparedStatement statement=Connexion.getCon().prepareStatement("SELECT a.* FROM  annonces a JOIN annonces_con_site acs on a.id = acs.id_annonce where id_site=? and datedebut <= CURRENT_DATE and CURRENT_DATE <= datefin and id_cat in ?");
+        PreparedStatement statement=Connexion.getCon().prepareStatement("SELECT a.* FROM  annonces a JOIN annonces_con_site acs on a.id = acs.id_annonce where id_site=? and datedebut <= CURRENT_DATE and CURRENT_DATE <= datefin and id_cat = any (?)");
         statement.setInt(1,site.getId());
         Array array = Connexion.getCon().createArrayOf("bigint",catIds.toArray());
         statement.setArray(2,array);

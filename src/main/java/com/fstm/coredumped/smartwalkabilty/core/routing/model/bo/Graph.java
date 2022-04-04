@@ -66,4 +66,41 @@ public class Graph
         }
         return false;
     }
+
+
+    public boolean addPoint(GeoPoint p, GeoPoint end , double Radious){
+
+        double Dist;
+        Map<GeoPoint, Set<Vertex>> g = this.getGr();
+        double MinDist = Double.MAX_VALUE;
+        GeoPoint resPoint = null;
+        for (GeoPoint entry: new HashSet<>(g.keySet())){
+            //Dist = p.distanceToInMeters(entry.getKey());
+            Dist = this.getDistance(p, entry);
+            if(Dist < MinDist){
+                if(end != null && Dist < Radious/3  )
+                {
+                    if( this.isConnected(entry, end)){
+                        MinDist = Dist;
+                        resPoint = entry;
+                    }else g.remove(entry);
+                } else if(end == null){
+                    MinDist = Dist;
+                    resPoint = entry;
+                }
+            }
+        }
+        if(MinDist==Double.MAX_VALUE)return false;
+        Vertex v = new Vertex();
+        if(end != null){
+            v.setDepart(p);
+            v.setArrive(resPoint);
+        } else {
+            v.setDepart(resPoint);
+            v.setArrive(p);
+        }
+        v.setDistance(MinDist);
+        this.Add_Route(v);
+        return true;
+    }
 }
