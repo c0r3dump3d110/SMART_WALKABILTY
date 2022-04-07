@@ -78,7 +78,7 @@ public class DAODanger {
     public int getIdTypeFromType(String type){
         try {
             Connection c = Connexion.getConnection();
-            PreparedStatement preparedStatement = c.prepareStatement("SELECT id_type from dangertype where name=?");
+            PreparedStatement preparedStatement = c.prepareStatement("SELECT id_type from dangertype where name LIKE ?");
             preparedStatement.setString(1, type);
 
             ResultSet set =preparedStatement.executeQuery();
