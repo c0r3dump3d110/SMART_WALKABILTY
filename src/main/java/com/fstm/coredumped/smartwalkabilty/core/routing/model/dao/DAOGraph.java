@@ -31,7 +31,6 @@ public class DAOGraph implements IDAOGraph {
         double Ycenter = (source.getLaltittude() + target.getLaltittude())/2.0;
         double Xcenter = (source.getLongtitude() + target.getLongtitude())/2.0;
 
-
         // set a projection system
         int projection_system = 4326;
 

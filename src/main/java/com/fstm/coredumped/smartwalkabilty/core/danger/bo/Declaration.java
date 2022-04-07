@@ -2,9 +2,10 @@ package com.fstm.coredumped.smartwalkabilty.core.danger.bo;
 
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Declaration
+public class Declaration implements Serializable
 {
     private int id;
     private Danger danger;

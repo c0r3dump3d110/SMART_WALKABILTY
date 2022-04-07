@@ -1,6 +1,8 @@
 package com.fstm.coredumped.smartwalkabilty.core.server;
 
 import com.fstm.coredumped.smartwalkabilty.common.controller.*;
+import com.fstm.coredumped.smartwalkabilty.core.danger.bo.Declaration;
+import com.fstm.coredumped.smartwalkabilty.core.danger.controller.DangerCtrl;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Routage;
 import com.fstm.coredumped.smartwalkabilty.web.Model.bo.Site;
@@ -31,11 +33,16 @@ public class ClientHandler implements Runnable{
             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
 
             Object req = ois.readObject();
-
-
             d1 = LocalDateTime.now();
 
-            if(req instanceof ShortestPathReq || req instanceof ShortestPathWithAnnounces){
+            if(req instanceof DangerReq){
+                System.out.println("["+d1+"] user requesting dangers ...");
+                DangerReq req1 = (DangerReq) req;
+                List<Declaration> declarations = new DangerCtrl().requestDangers(req1);
+                oos.writeObject(declarations);
+            }
+
+            else if(req instanceof ShortestPathReq || req instanceof ShortestPathWithAnnounces){
                 System.out.println("["+d1+"] starting routing ...");
                 if(req instanceof ShortestPathReq)
                     routage = new Routage((ShortestPathReq) req);
@@ -58,7 +65,8 @@ public class ClientHandler implements Runnable{
             else if(req instanceof DeclareDangerReq){
                 System.out.println("["+d1+"] user request Declaring danger ...");
                 DeclareDangerReq req1 = (DeclareDangerReq) req;
-
+                new DangerCtrl().danger_ctrl(req1);
+                oos.writeBoolean(true);
             }
 
             d2 = LocalDateTime.now();
