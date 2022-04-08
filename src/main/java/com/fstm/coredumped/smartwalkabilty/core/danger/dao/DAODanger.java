@@ -100,14 +100,13 @@ public class DAODanger {
         try {
 
             Connection c = Connexion.getConnection();
-            PreparedStatement preparedStatement = c.prepareStatement("select t.name, w.x1, w.y1, w.x2, w.y2, w.length_m, w.risk, d.date, d.degree \n" +
-                    "FROM dangertype t JOIN declaration d on d.id_type = t.id_type JOIN ways w on d.id_way = w.gid \n" +
-                    "\n" +
-                    "WHERE EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - d.date)) < ? \n" +
-                    "\n" +
-                    "and ST_Intersects(( \n" +
-                    "           SELECT ST_BUFFER (\n" +
-                    "           ST_SetSRID(ST_Point(?, ?), ?), ?, ?)), w.the_geom); ");
+            PreparedStatement preparedStatement = c.prepareStatement("select t.name, w.x1, w.y1, w.x2, w.y2, w.length_m, w.risk, d.date, d.degree\n" +
+                    "FROM dangertype t \n" +
+                    "JOIN declaration d on d.id_type = t.id_type \n" +
+                    "JOIN ways w on d.id_way = w.gid \n" +
+                    "WHERE EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - d.date)) < ?\n" +
+                    "and ST_Intersects((\n" +
+                    "SELECT ST_BUFFER (ST_SetSRID(ST_MakePoint(?, ?), ?)::geography, ?)::geometry), w.the_geom); \n ");
 
 
             preparedStatement.setInt(1, hours);
@@ -115,7 +114,6 @@ public class DAODanger {
             preparedStatement.setDouble(3, dangerReq.getActualPoint().getLaltittude());
             preparedStatement.setInt(4, 4326);
             preparedStatement.setDouble(5, dangerReq.getPerimetre());
-            preparedStatement.setInt(6, 2);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
