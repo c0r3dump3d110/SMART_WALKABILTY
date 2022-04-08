@@ -2,9 +2,8 @@ package com.fstm.coredumped.smartwalkabilty.core.danger.controller;
 
 import com.fstm.coredumped.smartwalkabilty.common.controller.DangerReq;
 import com.fstm.coredumped.smartwalkabilty.common.controller.DeclareDangerReq;
-import com.fstm.coredumped.smartwalkabilty.core.danger.bo.Danger;
-import com.fstm.coredumped.smartwalkabilty.core.danger.bo.Declaration;
-import com.fstm.coredumped.smartwalkabilty.core.danger.dao.DAODanger;
+import com.fstm.coredumped.smartwalkabilty.core.danger.model.bo.Declaration;
+import com.fstm.coredumped.smartwalkabilty.core.danger.model.dao.DAODanger;
 
 import java.util.List;
 

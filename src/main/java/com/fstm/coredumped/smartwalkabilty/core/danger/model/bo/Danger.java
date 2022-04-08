@@ -1,7 +1,6 @@
-package com.fstm.coredumped.smartwalkabilty.core.danger.bo;
+package com.fstm.coredumped.smartwalkabilty.core.danger.model.bo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,7 +1,7 @@
 package com.fstm.coredumped.smartwalkabilty.core.server;
 
 import com.fstm.coredumped.smartwalkabilty.common.controller.*;
-import com.fstm.coredumped.smartwalkabilty.core.danger.bo.Declaration;
+import com.fstm.coredumped.smartwalkabilty.core.danger.model.bo.Declaration;
 import com.fstm.coredumped.smartwalkabilty.core.danger.controller.DangerCtrl;
 import com.fstm.coredumped.smartwalkabilty.core.geofencing.model.bo.Geofencing;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Routage;
