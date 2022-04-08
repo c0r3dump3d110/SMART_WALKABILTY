@@ -3,7 +3,7 @@ package com.fstm.coredumped.smartwalkabilty.core.danger.model.bo;
 public class Accident extends Danger
 {
     @Override
-    public double CalculateRisk() {
+    public int CalculateRisk() {
         return degree*10;
     }
     @Override

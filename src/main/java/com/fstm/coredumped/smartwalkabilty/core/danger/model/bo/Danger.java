@@ -8,7 +8,7 @@ public abstract class Danger implements Serializable
 {
     protected int id;
     protected int degree;
-    public abstract double CalculateRisk();
+    public abstract int CalculateRisk();
     protected Set<Declaration> declarations=new HashSet<>();
     public Danger() {
     }

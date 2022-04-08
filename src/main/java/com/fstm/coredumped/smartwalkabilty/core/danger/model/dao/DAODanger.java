@@ -30,7 +30,10 @@ public class DAODanger {
                 preparedStatement.setInt(3, dangerReq.getDanger().getDegree());
 
                 preparedStatement.executeUpdate();
-
+                preparedStatement=c.prepareStatement("UPDATE ways SET risk = risk + ? where gid = ?");
+                preparedStatement.setInt(1,dangerReq.getDanger().CalculateRisk());
+                preparedStatement.setInt(2,vertexId);
+                preparedStatement.executeUpdate();
                 return true;
 
             }else {
@@ -127,7 +130,7 @@ public class DAODanger {
                     danger = new Vol();
                 }
                 if(danger != null){
-
+                    danger.setDegree(resultSet.getInt("degree"));
                     Vertex vertex = new Vertex(
                             new GeoPoint(resultSet.getDouble("y1"), resultSet.getDouble("x1")),
                             new GeoPoint(resultSet.getDouble("y2"), resultSet.getDouble("x2")),
