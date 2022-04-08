@@ -1,4 +1,4 @@
-package com.fstm.coredumped.smartwalkabilty.core.danger.bo;
+package com.fstm.coredumped.smartwalkabilty.core.danger.model.bo;
 
 public class Traveaux extends Danger
 {

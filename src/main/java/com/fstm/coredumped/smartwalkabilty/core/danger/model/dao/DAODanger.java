@@ -1,19 +1,16 @@
-package com.fstm.coredumped.smartwalkabilty.core.danger.dao;
+package com.fstm.coredumped.smartwalkabilty.core.danger.model.dao;
 
 import com.fstm.coredumped.smartwalkabilty.common.controller.DangerReq;
 import com.fstm.coredumped.smartwalkabilty.common.controller.DeclareDangerReq;
 import com.fstm.coredumped.smartwalkabilty.common.model.bo.GeoPoint;
-import com.fstm.coredumped.smartwalkabilty.core.danger.bo.*;
+import com.fstm.coredumped.smartwalkabilty.core.danger.model.bo.*;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.dao.Connexion;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DAODanger {

@@ -1,4 +1,4 @@
-package com.fstm.coredumped.smartwalkabilty.core.danger.bo;
+package com.fstm.coredumped.smartwalkabilty.core.danger.model.bo;
 
 import com.fstm.coredumped.smartwalkabilty.core.routing.model.bo.Vertex;
 
