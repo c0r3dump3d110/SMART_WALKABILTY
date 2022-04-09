@@ -17,7 +17,7 @@
     </servlet>
     <servlet>
         <servlet-name>TokenVerifConntroller</servlet-name>
-        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.TokenVerifConntroller</servlet-class>
+        <servlet-class>com.fstm.coredumped.smartwalkabilty.web.Controller.TokenVerifyController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegistrationController</servlet-name>

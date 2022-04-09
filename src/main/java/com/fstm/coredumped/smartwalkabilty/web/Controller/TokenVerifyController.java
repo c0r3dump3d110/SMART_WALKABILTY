@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class TokenVerifConntroller extends HttpServlet {
+public class TokenVerifyController extends HttpServlet {
     public class err{
         String error="error";
         err(){}
