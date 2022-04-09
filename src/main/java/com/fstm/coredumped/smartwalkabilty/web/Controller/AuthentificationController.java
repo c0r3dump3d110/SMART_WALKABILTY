@@ -79,6 +79,7 @@ public class AuthentificationController extends HttpServlet {
             ))));
         }
         else {
+            resp.setStatus(400);
             resp.getWriter().println(gson.toJson(new err("Authentication Error : no account found with the provided login/password")));
         }
     }

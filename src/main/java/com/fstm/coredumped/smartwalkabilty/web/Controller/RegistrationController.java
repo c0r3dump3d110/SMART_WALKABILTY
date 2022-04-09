@@ -46,10 +46,14 @@ public class RegistrationController extends HttpServlet {
             organisation.setType(Integer.parseInt(fiche.type));
             if (DAOOrganisation.getDaoOrganisation().Create(organisation))
                 resp.getWriter().println("{\"success\":\"Organization added\"}");
-            else
+            else{
+                resp.setStatus(400);
                 resp.getWriter().println("{\"error\":\"Organization not inserted\"}");
+            }
+
         }
         else {
+            resp.setStatus(400);
             if (emailE)
                 resp.getWriter().println("{\"error\":\"Email address already used\"}");
             else

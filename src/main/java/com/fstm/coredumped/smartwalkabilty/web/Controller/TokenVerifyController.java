@@ -28,6 +28,7 @@ public class TokenVerifyController extends HttpServlet {
             resp.getWriter().println("SUCESS");
         }
         else {
+            resp.setStatus(400);
             resp.getWriter().println("FAIL");
         }
     }
