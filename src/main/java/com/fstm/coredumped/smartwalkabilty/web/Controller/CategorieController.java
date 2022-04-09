@@ -25,13 +25,13 @@ public class CategorieController extends HttpServlet
             Gson s = new Gson();
             CatIdsBlob Blob=s.fromJson(request.getReader(),CatIdsBlob.class);
             String s1=service.getServ(Blob);
-            if(s1.contains("invalid"))response.setStatus(401);
+            if(s1.contains("invalid"))response.setStatus(400);
             response.getWriter().println(s1);
         }
         catch (Exception e)
         {
             System.err.println(e);
-            response.setStatus(402);
+            response.setStatus(400);
             response.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }

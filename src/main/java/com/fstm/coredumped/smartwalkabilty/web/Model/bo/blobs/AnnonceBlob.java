@@ -17,7 +17,7 @@ public class AnnonceBlob {
     private int id_cat;
 
     public boolean verifyInfos() {
-        if (dateDebut == null || dateFin == null || Titre == null || Description == null || url == null || Token == null || sites == null)
+        if (dateDebut == null || dateFin == null || Titre == null || Description == null || url == null || Token == null|| id_cat==0 || sites == null)
             return false;
         if (sites.length == 0) return false;
         return true;

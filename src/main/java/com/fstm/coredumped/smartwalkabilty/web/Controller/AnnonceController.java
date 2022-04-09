@@ -19,12 +19,6 @@ import static java.util.stream.Collectors.joining;
 public class AnnonceController extends HttpServlet
 {
     AnnouncesService servise=new AnnouncesService();
-    public static boolean verifyToken(String Token)
-    {
-        return new JWTgv().verifyToken(Token);
-    }
-
-
     @Override
     protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -38,7 +32,7 @@ public class AnnonceController extends HttpServlet
         }catch (Exception e)
         {
             System.err.println(e);
-            response.setStatus(402);
+            response.setStatus(400);
             response.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }
@@ -50,7 +44,7 @@ public class AnnonceController extends HttpServlet
         try {
             AnnonceBlob blob = s.fromJson(req.getReader(), AnnonceBlob.class);
             String s1=servise.createAnnounce(blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         }catch (Exception e){
             System.err.println(e);
@@ -66,11 +60,11 @@ public class AnnonceController extends HttpServlet
         try {
             AnnonceBlob Blob = s.fromJson(req.getReader(), AnnonceBlob.class);
             String s1= servise.updateAnnounce(Blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         }catch (Exception e){
             System.err.println(e);
-            resp.setStatus(402);
+            resp.setStatus(400);
             resp.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }
@@ -84,11 +78,11 @@ public class AnnonceController extends HttpServlet
             Gson s = new Gson();
             IdsBlob Blob = s.fromJson(req.getReader(), IdsBlob.class);
             String s1= servise.deleteAnnounce(Blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         }catch (Exception e){
             System.err.println(e);
-            resp.setStatus(402);
+            resp.setStatus(400);
             resp.getWriter().println("{ \"mes\":\" Exception Happened \" }");
         }
     }

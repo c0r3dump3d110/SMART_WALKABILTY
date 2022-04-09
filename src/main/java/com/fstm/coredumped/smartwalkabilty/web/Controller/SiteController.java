@@ -26,13 +26,13 @@ public class SiteController extends HttpServlet {
         try {
             IdsSiteBlob Blob=s.fromJson(request.getReader(), IdsSiteBlob.class);
             String s1=service.getServ(Blob);
-            if(s1.contains("invalid"))response.setStatus(401);
+            if(s1.contains("invalid"))response.setStatus(400);
             response.getWriter().println(s1);
         }
         catch (Exception e)
         {
             System.err.println(e);
-            response.setStatus(402);
+            response.setStatus(400);
             response.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }
@@ -46,11 +46,11 @@ public class SiteController extends HttpServlet {
         try {
             SiteBlob Blob = s.fromJson(req.getReader(), SiteBlob.class);
             String s1=service.createSite(Blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         } catch (Exception e) {
             System.err.println(e);
-            resp.setStatus(402);
+            resp.setStatus(400);
             resp.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }
@@ -62,11 +62,11 @@ public class SiteController extends HttpServlet {
         try {
             SiteBlob Blob = s.fromJson(req.getReader(), SiteBlob.class);
             String s1=service.updateSite(Blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         }catch (Exception e){
             System.err.println(e);
-            resp.setStatus(402);
+            resp.setStatus(400);
             resp.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
     }
@@ -80,12 +80,12 @@ public class SiteController extends HttpServlet {
             Gson s = new Gson();
             IdsSiteBlob Blob = s.fromJson(req.getReader(), IdsSiteBlob.class);
             String s1=service.deleteSite(Blob);
-            if(s1.contains("invalid"))resp.setStatus(401);
+            if(s1.contains("invalid"))resp.setStatus(400);
             resp.getWriter().println(s1);
         }
         catch (Exception e){
             System.err.println(e);
-            resp.setStatus(402);
+            resp.setStatus(400);
             resp.getWriter().println("{ \"mes\":\"  Exception Happened \" }");
         }
 
